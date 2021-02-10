@@ -23,11 +23,17 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => 'Admin',
-            'email' => 'admin@test.test',
+            'name' => $this->faker->name,
+            'email' => $this->faker->unique()->email,
             'email_verified_at' => now(),
             'password' => \Hash::make('password'),
             'remember_token' => Str::random(10),
+            'country' => 'Nederland',
+            'state' => $this->faker->state,
+            'city' => $this->faker->city,
+            'street' => $this->faker->streetName,
+            'zip_code' => $this->faker->postcode,
+            'building_number' => $this->faker->buildingNumber,
         ];
     }
 }
