@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class RestaurantReservation extends Model
 {
     use HasFactory;
+
+    public function restaurant()
+    {
+        return $this->hasOne(Restaurant::class);
+    }
 }
