@@ -17,6 +17,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@test.nl',
+            'password' => \Hash::make('password'),
+            'country' => 'Nederland',
+            'state' => 'Noord Brabant',
+            'city' => 'Eindhoven',
+            'zip_code' => '1234 AB',
+            'street' => 'Weglaan',
+            'building_number' => '12',
+        ]);
+
         User::factory(10)->create();
 
         Cinema::factory(5)->create();
