@@ -24,8 +24,8 @@ class CinemaHallFactory extends Factory
     public function definition()
     {
         return [
-            'chair_rows' => $this->faker->numberBetween(1, 10),
-            'chair_row_seats' => $this->faker->numberBetween(1, 10),
+            'chair_rows' => $this->faker->numberBetween(10, 20),
+            'chair_row_seats' => $this->faker->numberBetween(15, 30),
 
         ];
     }

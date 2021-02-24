@@ -24,7 +24,7 @@ class CinemaFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
+            'name' => $this->faker->company,
             'location' => $this->faker->streetAddress,
 
         ];

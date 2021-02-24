@@ -24,7 +24,7 @@ class CinemaReservationSeatFactory extends Factory
     {
         return [
             'row_id' => $this->faker->numberBetween(1, 10),
-            'seat_id' => $this->faker->numberBetween(1, 10),
+            'seat_id' => $this->faker->numberBetween(1, 15),
         ];
     }
 }
