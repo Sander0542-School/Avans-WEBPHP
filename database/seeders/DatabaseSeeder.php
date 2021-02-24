@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Cinema;
 use App\Models\Event;
+use App\Models\RestaurantKitchen;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -21,5 +22,7 @@ class DatabaseSeeder extends Seeder
         Cinema::factory(5)->create();
 
         Event::factory(20)->create();
+
+        RestaurantKitchen::factory(10)->create();
     }
 }
