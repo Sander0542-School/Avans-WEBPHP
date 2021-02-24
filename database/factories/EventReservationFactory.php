@@ -23,7 +23,7 @@ class EventReservationFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::all()->random()->id,
+            'user_id' => User::inRandomOrder()->first()->id,
             'ticket_count' => $this->faker->numberBetween(1,3)
         ];
     }
