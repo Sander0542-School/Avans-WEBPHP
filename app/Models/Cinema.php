@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Cinema extends Model
 {
     use HasFactory;
+
+    public function halls()
+    {
+        return $this->hasMany(CinemaHall::class);
+    }
 }
