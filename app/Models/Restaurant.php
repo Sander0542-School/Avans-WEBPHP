@@ -9,6 +9,11 @@ class Restaurant extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'opens_at' => 'datetime',
+        'closes_at' => 'datetime'
+    ];
+
     public function kitchen()
     {
         return $this->hasOne(RestaurantKitchen::class);

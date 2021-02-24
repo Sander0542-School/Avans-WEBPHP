@@ -9,6 +9,8 @@ class RestaurantKitchen extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public function restaurants()
     {
         return $this->hasMany(Restaurant::class);

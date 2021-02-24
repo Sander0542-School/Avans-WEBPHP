@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Event;
 use App\Models\EventReservation;
+use App\Models\RestaurantKitchen;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -19,5 +20,7 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
 
         Event::factory(20)->create();
+
+        RestaurantKitchen::factory(10)->create();
     }
 }
