@@ -13,4 +13,12 @@ class EventReservation extends Model
         'start_date' => 'date',
         'end_date' => 'date'
     ];
+
+    /**
+     * Get the event for the reservation.
+     */
+    public function event()
+    {
+        return $this->hasOne(EventReservation::class);
+    }
 }
