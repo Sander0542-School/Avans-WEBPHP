@@ -13,6 +13,7 @@ class ShowAllCinemas extends Component
     public $halls=[];
     public $movies=[];
     public $movie;
+    public $persons;
 
     protected $rules = [
         'movie.id' => ['required'],
@@ -26,7 +27,6 @@ class ShowAllCinemas extends Component
             $this->halls = CinemaHall::where('cinema_id', $this->cinema)->get();
             $this->movies = CinemaShow::whereIn('cinema_hall_id', $this->halls->pluck('id')->toArray())->get();
         }
-
         return view('livewire.cinema.show-all-cinemas')->withCinemas(Cinema::orderBy('name')->get());
     }
 }

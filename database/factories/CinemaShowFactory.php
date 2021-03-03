@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\CinemaMovie;
 use App\Models\CinemaReservation;
 use App\Models\CinemaShow;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -23,7 +24,7 @@ class CinemaShowFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->name,
+            'movie_id' => CinemaMovie::inRandomOrder()->first()->id,
             'start_datetime' => $this->faker->dateTime,
             'end_datetime' => $this->faker->dateTime,
         ];
