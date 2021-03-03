@@ -10,7 +10,7 @@
             <div>
                 <div class="mb-8">
                     <label class="inline-block w-32 font-bold">Bioscoop:</label>
-                    <select style="min-width: 252px" name="country" wire:model="cinema" class=" p-2 px-4 py-2 pr-8 leading-tight bg-white border border-gray-400 rounded shadow appearance-none hover:border-gray-500 focus:outline-none focus:shadow-outline ">
+                    <select style="min-width: 252px" name="country" wire:model="cinemaId" class=" p-2 px-4 py-2 pr-8 leading-tight bg-white border border-gray-400 rounded shadow appearance-none hover:border-gray-500 focus:outline-none focus:shadow-outline ">
                         <option  value=''>Kies een bioscoop</option>
                         @foreach($cinemas as $cinema)
                             <option value="{{ $cinema->id }}">{{ $cinema->name }}</option>
@@ -24,13 +24,13 @@
                                 class=" p-2 px-4 py-2 pr-8 leading-tight bg-white border border-gray-400 rounded shadow appearance-none hover:border-gray-500 focus:outline-none focus:shadow-outline ">
                             <option  value=''>Kies een film</option>
                             @foreach($movies as $movieSelect)
-                                <option value="{{ $movieSelect->id }}">{{ $movieSelect->title }}</option>
+                                <option value="{{ $movieSelect->id }}">{{ $movieSelect->movie->title }}</option>
                             @endforeach
                         </select>
                     </div>
                     @if($movie)
                         <div class="mb-8">
-                            <label class="inline-block w-32 font-bold">Antal personen :</label>
+                            <label class="inline-block w-32 font-bold">Aantal personen:</label>
 
                             <input wire:model="persons" type="number" class="p-2 px-4 py-2 pr-8 leading-tight bg-white border border-gray-400 rounded shadow appearance-none hover:border-gray-500 focus:outline-none focus:shadow-outline" min="10" max="100">
 

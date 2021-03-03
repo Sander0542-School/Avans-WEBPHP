@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class ShowAllCinemas extends Component
 {
-    public $cinema;
+    public $cinemaId;
     public $halls=[];
     public $movies=[];
     public $movie;
@@ -23,9 +23,14 @@ class ShowAllCinemas extends Component
 
     public function render()
     {
-        if(!empty($this->cinema)) {
-            $this->halls = CinemaHall::where('cinema_id', $this->cinema)->get();
-            $this->movies = CinemaShow::whereIn('cinema_hall_id', $this->halls->pluck('id')->toArray())->get();
+        if(!empty($this->cinemaId)) {
+            $cinema = Cinema::find($this->cinemaId);
+            //$this->halls = CinemaHall::where('cinema_id', $this->cinema)->get();
+            //$this->movies = CinemaShow::whereIn('cinema_hall_id', $this->cinema->halls->pluck('id')->toArray())->get();
+
+            //$this->movies = $cinema->shows()->where('start_datetime', '>', now() )->get();
+            $this->movies = $cinema->shows()->get();
+            //dd($this->movies);
         }
         return view('livewire.cinema.show-all-cinemas')->withCinemas(Cinema::orderBy('name')->get());
     }

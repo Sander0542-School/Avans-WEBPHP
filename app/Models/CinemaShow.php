@@ -14,6 +14,11 @@ class CinemaShow extends Model
         return $this->hasOne(CinemaHall::class, 'id', 'cinema_hall_id');
     }
 
+    public function movie()
+    {
+        return $this->hasOne(CinemaMovie::class, 'id', 'movie_id');
+    }
+
     public function reservations()
     {
         return $this->hasmany(CinemaReservation::class);
