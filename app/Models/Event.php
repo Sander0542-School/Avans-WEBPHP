@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\CarbonPeriod;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,5 +21,10 @@ class Event extends Model
     public function reservations()
     {
         return $this->hasMany(EventReservation::class);
+    }
+
+    public function getDaysAttribute()
+    {
+        return CarbonPeriod::create($this->start_datetime->format('Y-m-d'),$this->end_datetime->format('Y-m-d'))->toArray();
     }
 }
