@@ -3,13 +3,14 @@
 namespace App\Http\Livewire\Reservation\Event;
 
 use App\Models\Event;
+use App\Models\EventReservation;
 use Livewire\Component;
 
 class Index extends Component
 {
     protected $listeners = [
-        'eventChanged' => 'eventChanged',
-        'eventDeselected' => 'clearEvent',
+        'eventSelected' => 'eventSelected',
+        'eventDeselected' => 'eventDeselected',
         'ticketsConfirmed' => 'ticketsConfirmed',
     ];
 
@@ -18,7 +19,12 @@ class Index extends Component
      */
     public $event;
 
-    public $selectStep = false;
+    /**
+     * @var \App\Models\EventReservation
+     */
+    public $reservation;
+
+    public $reservationStep = 0;
 
     public function render()
     {
@@ -27,17 +33,17 @@ class Index extends Component
 
     private function resetEvent()
     {
-        $this->selectStep = false;
+        $this->reservationStep = $this->event == null ? 0 : 1;
     }
 
-    public function eventChanged(Event $event)
+    public function eventSelected(Event $event)
     {
         $this->event = $event;
 
         $this->resetEvent();
     }
 
-    public function clearEvent()
+    public function eventDeselected()
     {
         $this->event = null;
 
@@ -46,11 +52,17 @@ class Index extends Component
 
     public function stepSelect()
     {
-        $this->selectStep = true;
+        $this->reservationStep = 2;
     }
 
     public function ticketsConfirmed($count, $startDate, $endDate)
     {
+        $this->reservation = new EventReservation();
+        $this->reservation->event_id = $this->event->id;
+        $this->reservation->ticket_count = $count;
+        $this->reservation->start_date = $startDate;
+        $this->reservation->end_date = $endDate;
 
+        $this->reservationStep = 3;
     }
 }
