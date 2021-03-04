@@ -1,5 +1,5 @@
 <x-app-layout>
 
 
-    <livewire:show-all-cinemas/>
+    <livewire:cinema.index/>
 </x-app-layout>
