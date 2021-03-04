@@ -1,9 +1,12 @@
-<div class="mb-8">
-    <label class="inline-block w-32 font-bold">Bioscoop:</label>
-    <select style="min-width: 252px" name="country" wire:model="cinemaId" class=" p-2 px-4 py-2 pr-8 leading-tight bg-white border border-gray-400 rounded shadow appearance-none hover:border-gray-500 focus:outline-none focus:shadow-outline ">
+<div>
+    <div class="form-group">
+        <label for="inputEventId">Bioscoop:</label>
+
+        <select style="min-width: 252px" name="country" wire:model="cinemaId" class="form-control">
         <option value=''>Kies een bioscoop</option>
         @foreach($cinemas as $cinema)
             <option value="{{ $cinema->id }}">{{ $cinema->name }}</option>
         @endforeach
-    </select>
+        </select>
+    </div>
 </div>
