@@ -49,7 +49,7 @@
 
     @if($dataValid)
         <div class="col-12">
-            <button wire:click="confirmTicket" class="btn btn-primary">@lang('reservation.event.button.upload-pictures')</button>
+            <button wire:click="confirmTicket" class="btn btn-primary">@lang('reservation.event.button.upload-picture')</button>
         </div>
     @endif
 </div>

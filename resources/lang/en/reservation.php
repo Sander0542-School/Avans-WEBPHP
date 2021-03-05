@@ -9,7 +9,7 @@ return [
                 '1' => 'Step 2: Confirm event',
                 '2' => 'Step 3: Select tickets',
                 '3' => 'Step 4: Upload pictures',
-                '4' => 'Step 5: Buy Tickets',
+                '4' => 'Step 5: Confirm reservation',
             ]
         ],
         'information' => [
@@ -17,10 +17,16 @@ return [
             'days' => 'Days',
             'location' => 'Location',
             'max-tickets' => 'Maximum Tickets',
+            'ticket-count' => 'Ticket Count',
+            'picture' => 'Picture',
+            'start-date' => 'Start Date',
+            'end-date' => 'End Date',
         ],
         'button' => [
             'select-tickets' => 'Next: Select Tickets',
-            'upload-pictures' => 'Next: Upload Picture(s)',
+            'upload-picture' => 'Next: Upload Picture',
+            'confirm-reservation' => 'Next: Confirm Reservation',
+            'finish' => 'Finish Reservation',
         ],
         'form' => [
             'event' => [

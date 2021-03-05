@@ -46,7 +46,6 @@
                 </div>
             </div>
         @endif
-
     @elseif($reservationStep == 2)
         <div class="card">
             <div class="card-body">
@@ -58,7 +57,37 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">@lang('reservation.event.title.step.3')</h5>
-                <livewire:reservation.event.picture />
+                <livewire:reservation.event.picture/>
+            </div>
+        </div>
+    @elseif($reservationStep == 4)
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <h5 class="card-title">@lang('reservation.event.title.step.4')</h5>
+
+                        <h6 class="card-subtitle mb-2 text-muted">@lang('reservation.event.information.name')</h6>
+                        <p class="card-text">{{ $event->name }}</p>
+
+                        <h6 class="card-subtitle mb-2 text-muted">@lang('reservation.event.information.location')</h6>
+                        <p class="card-text">{{ $event->location }}</p>
+
+                        <h6 class="card-subtitle mb-2 text-muted">@lang('reservation.event.information.ticket-count')</h6>
+                        <p class="card-text">{{ $reservation->ticket_count }}</p>
+
+                        <h6 class="card-subtitle mb-2 text-muted">@lang('reservation.event.information.start-date')</h6>
+                        <p class="card-text">{{ $reservation->start_date->format('d F') }}</p>
+
+                        <h6 class="card-subtitle mb-2 text-muted">@lang('reservation.event.information.end-date')</h6>
+                        <p class="card-text">{{ $reservation->end_date->format('d F') }}</p>
+                    </div>
+                    <div class="col-4">
+                        <h6 class="card-subtitle mb-2 text-muted">@lang('reservation.event.information.picture')</h6>
+                        <img alt="{{ auth()->user()->name }}" src="{{ public_path($reservation->picture) }}" width="100%" class="img-thumbnail"/>
+                    </div>
+                </div>
+                <button class="btn btn-primary" wire:click="finishReservation">@lang('reservation.event.button.finish')</button>
             </div>
         </div>
     @endif

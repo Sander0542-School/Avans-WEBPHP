@@ -12,6 +12,7 @@ class Index extends Component
         'eventSelected' => 'eventSelected',
         'eventDeselected' => 'eventDeselected',
         'ticketsConfirmed' => 'ticketsConfirmed',
+        'pictureUploaded' => 'pictureConfirmed',
     ];
 
     /**
@@ -58,11 +59,30 @@ class Index extends Component
     public function ticketsConfirmed($count, $startDate, $endDate)
     {
         $this->reservation = new EventReservation();
-        $this->reservation->event_id = $this->event->id;
         $this->reservation->ticket_count = $count;
         $this->reservation->start_date = $startDate;
         $this->reservation->end_date = $endDate;
 
         $this->reservationStep = 3;
+    }
+
+    public function pictureConfirmed($path)
+    {
+        if ($this->reservation != null) {
+            $this->reservation->picture = $path;
+
+            $this->reservationStep = 4;
+        } else {
+            $this->reservationStep = 2;
+        }
+    }
+
+    public function finishReservation()
+    {
+        if ($this->reservation != null) {
+            $this->reservation->event_id = $this->event->id;
+        } else {
+            $this->reservationStep = 2;
+        }
     }
 }
