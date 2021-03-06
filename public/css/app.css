@@ -16439,6 +16439,21 @@ readers do not read off random characters that represent icons */
   font-size: 0.875rem !important;
 }
 
+.inline-group {
+  max-width: 9rem;
+}
+.inline-group .form-control {
+  text-align: right;
+}
+.inline-group .form-control[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.inline-group .form-control[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .pagination {
   justify-content: center;
 }

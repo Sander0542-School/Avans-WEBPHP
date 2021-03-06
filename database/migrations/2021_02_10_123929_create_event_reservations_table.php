@@ -18,6 +18,7 @@ class CreateEventReservationsTable extends Migration
             $table->unsignedBigInteger('event_id');
             $table->unsignedBigInteger('user_id');
             $table->integer('ticket_count');
+            $table->string('picture');
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();
