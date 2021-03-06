@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Livewire\Home\Events as HomeEvents;
+use App\Http\Livewire\Home\Index as HomeIndex;
+use App\Http\Livewire\Home\Restaurants as HomeRestaurants;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +21,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get('/home', HomeIndex::class)->name('home');
+    Route::get('/events', HomeEvents::class)->name('home.events');
+    Route::get('/restaurants', HomeRestaurants::class)->name('home.restaurants');
+});
+

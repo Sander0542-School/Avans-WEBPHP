@@ -2,8 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\CinemaMovie;
 use App\Models\CinemaReservation;
 use App\Models\CinemaShow;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CinemaShowFactory extends Factory
@@ -22,10 +24,13 @@ class CinemaShowFactory extends Factory
      */
     public function definition()
     {
+        $startDate = Carbon::make($this->faker->dateTimeBetween('-3 months', '+3 months'));
+        $endDate = Carbon::make($this->faker->dateTimeBetween($startDate->clone()->addMinutes(60), $startDate->clone()->addMinutes(180)));
+
         return [
-            'title' => $this->faker->name,
-            'start_datetime' => $this->faker->dateTime,
-            'end_datetime' => $this->faker->dateTime,
+            'movie_id' => CinemaMovie::inRandomOrder()->first()->id,
+            'start_datetime' => $startDate,
+            'end_datetime' => $endDate,
         ];
     }
 
