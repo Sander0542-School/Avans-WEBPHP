@@ -16453,3 +16453,7 @@ readers do not read off random characters that represent icons */
   -webkit-appearance: none;
   margin: 0;
 }
+
+.pagination {
+  justify-content: center;
+}

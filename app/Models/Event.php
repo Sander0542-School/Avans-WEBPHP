@@ -11,8 +11,8 @@ class Event extends Model
     use HasFactory;
 
     protected $casts = [
-        'start_datetime' => 'date',
-        'end_datetime' => 'date'
+        'start_datetime' => 'datetime',
+        'end_datetime' => 'datetime'
     ];
 
     /**

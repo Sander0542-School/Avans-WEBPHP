@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Cinema;
+use App\Models\CinemaMovie;
 use App\Models\Event;
 use App\Models\RestaurantKitchen;
 use App\Models\User;
@@ -30,6 +31,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory(10)->create();
+
+        CinemaMovie::factory(50)->create();
 
         Cinema::factory(5)->create();
 
