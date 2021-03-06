@@ -20,12 +20,9 @@ class Index extends Component
      */
     public $event;
 
-    /**
-     * @var \App\Models\EventReservation
-     */
-    public $reservation;
-
     public $reservationStep = 0;
+
+    public $reservation = [];
 
     public function render()
     {
@@ -58,10 +55,9 @@ class Index extends Component
 
     public function ticketsConfirmed($count, $startDate, $endDate)
     {
-        $this->reservation = new EventReservation();
-        $this->reservation->ticket_count = $count;
-        $this->reservation->start_date = $startDate;
-        $this->reservation->end_date = $endDate;
+        $this->reservation['ticket_count'] = $count;
+        $this->reservation['start_date'] = $startDate;
+        $this->reservation['end_date'] = $endDate;
 
         $this->reservationStep = 3;
     }
@@ -69,7 +65,7 @@ class Index extends Component
     public function pictureConfirmed($path)
     {
         if ($this->reservation != null) {
-            $this->reservation->picture = $path;
+            $this->reservation['picture'] = $path;
 
             $this->reservationStep = 4;
         } else {
@@ -79,10 +75,17 @@ class Index extends Component
 
     public function finishReservation()
     {
-        if ($this->reservation != null) {
-            $this->reservation->event_id = $this->event->id;
+        $this->reservation['event_id'] = $this->event->id;
+        $this->reservation['user_id'] = auth()->user()->id;
+
+        if (EventReservation::create($this->reservation) != null) {
+            $this->reservationStep = 5;
         } else {
-            $this->reservationStep = 2;
+            $this->reservationStep = 6;
         }
+    }
+
+    public function goHome() {
+        $this->redirectRoute('home');
     }
 }

@@ -10,7 +10,12 @@ return [
                 '2' => 'Step 3: Select tickets',
                 '3' => 'Step 4: Upload pictures',
                 '4' => 'Step 5: Confirm reservation',
+                '5' => 'Reservation made',
+                '6' => 'Something happend',
             ]
+        ],
+        'message' => [
+            'could-not-create' => 'Could not create the reservation, please try again.'
         ],
         'information' => [
             'name' => 'Name',
@@ -26,7 +31,8 @@ return [
             'select-tickets' => 'Next: Select Tickets',
             'upload-picture' => 'Next: Upload Picture',
             'confirm-reservation' => 'Next: Confirm Reservation',
-            'finish' => 'Finish Reservation',
+            'finish' => 'Next: Finish Reservation',
+            'home' => 'Go Home',
         ],
         'form' => [
             'event' => [
@@ -52,6 +58,9 @@ return [
                 'option' => [
                     'default' => 'Choose the start day',
                 ]
+            ],
+            'picture' => [
+                'label' => 'Picture',
             ],
         ],
     ],

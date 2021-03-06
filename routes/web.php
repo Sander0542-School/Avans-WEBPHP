@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Livewire\Reservation\Event\Index as ReservationEventIndex;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +25,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 });

@@ -111,6 +111,6 @@ class Ticket extends Component
             $endDate = $startDate->clone()->addDay();
         }
 
-        $this->emitUp('ticketsConfirmed', $this->ticketCount, $startDate, $endDate);
+        $this->emitUp('ticketsConfirmed', $this->ticketCount, $startDate->format('Y-m-d'), $endDate->format('Y-m-d'));
     }
 }
