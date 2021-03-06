@@ -4,7 +4,7 @@
     </h2>
 </x-slot>
 
-<div class="container">
+<div>
     @if($reservationStep == 0 || $reservationStep == 1)
         <div class="card">
             <div class="card-body">
