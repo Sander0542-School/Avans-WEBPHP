@@ -20,7 +20,7 @@ class Index extends Component
 
     public $cinemaId;
 
-    public $halls = [];
+    public $movieId;
 
     public $movies = [];
 
@@ -30,19 +30,30 @@ class Index extends Component
 
     public $cinema;
 
+    public $selectStep = false;
+
+    public $selectPeople = false;
+
+    public $step;
+
+    public $show;
+    public function mount()
+    {
+        $this->step = 1;
+    }
+
     public function render()
     {
         return view('livewire.reservation.cinema.index');
     }
 
-    public $selectStep = false;
-    public $selectPeople = false;
-
     public function cinemaChanged(Cinema $cinema)
     {
         $this->cinema = $cinema;
+        $this->cinemaId = $cinema->id;
         //$this->movies = $cinema->shows()->where('start_datetime', '>', now() )->get();
         $this->movies = $cinema->shows()->get();
+
 
     }
 
@@ -53,10 +64,22 @@ class Index extends Component
         $this->resetCinema();
     }
 
-    public function movieChanged(CinemaMovie $movie)
+    public function incrementStep()
+    {
+        $this->step++;
+    }
+    public function decrementStep()
+    {
+        $this->step--;
+    }
+
+    public function movieChanged(CinemaMovie $movie, CinemaShow  $show)
     {
         $this->movie = $movie;
+        $this->show = $show;
+        $this->movieId = $movie->id;
         $this->selectPeople = true;
+
     }
 
     public function movieDeselect()

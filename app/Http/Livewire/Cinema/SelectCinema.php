@@ -13,12 +13,11 @@ class SelectCinema extends Component
 
     public $cinema;
 
-
     public function render()
     {
-        $cinema = Cinema::find($this->cinemaId);
-        if ($cinema != null) {
-            $this->emit('cinemaChanged', $cinema);
+        $this->cinema = Cinema::find($this->cinemaId);
+        if ($this->cinema != null) {
+            $this->emit('cinemaChanged', $this->cinema);
         } else {
             $this->emit('cinemaDeselected');
         }

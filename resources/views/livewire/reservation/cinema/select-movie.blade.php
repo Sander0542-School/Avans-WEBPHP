@@ -1,7 +1,7 @@
 <div>
     <div class="form-group">
         <label for="inputEventId">Film:</label>
-    <select style="min-width: 252px" name="movie" wire:model="movie"
+    <select style="min-width: 252px" name="movie" wire:model="movieId"
             class="form-control">
         <option  value=''>Kies een film</option>
         @foreach($movies as $movieSelect)

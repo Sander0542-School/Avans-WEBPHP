@@ -18,17 +18,25 @@ class SelectMovie extends Component
 
     public $cinema;
 
+    public $show;
+
     public $movies = [];
 
-    public $movie;
+    public $movieId;
 
 
 
     public function render()
     {
-        $movie = CinemaMovie::find($this->movie);
+        $movie = null;
+        $this->show = CinemaShow::find($this->movieId);
+        if($this->show != null){
+            $movie = CinemaMovie::find($this->show->movie_id);
+        }
+
+
         if ($movie != null) {
-            $this->emitUp('movieChanged', $movie);
+            $this->emitUp('movieChanged', $movie, $this->show);
         } else {
             $this->emitUp('movieDeselected');
         }
@@ -40,7 +48,6 @@ class SelectMovie extends Component
     {
 
         $this->movies = $cinema->shows()->get();
-        //dd($this->movies);
 
     }
 }
