@@ -17,12 +17,12 @@ class Events extends Component
 
     public $showEvents = true;
 
-    public $order = 'name-asc';
+    public $order = 'start-asc';
 
     public $sortOrders = [
-        'name',
         'start',
         'end',
+        'name',
         'location',
     ];
 

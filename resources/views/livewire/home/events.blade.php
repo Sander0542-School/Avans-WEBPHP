@@ -4,6 +4,6 @@
     </h2>
 </x-slot>
 
-<div class="container">
+<div>
     <livewire:home.lists.events/>
 </div>

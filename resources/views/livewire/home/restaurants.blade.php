@@ -5,5 +5,8 @@
 </x-slot>
 
 <div>
-
+    @foreach($kitchens as $kitchen)
+        <livewire:home.restaurants.kitchen :kitchen-id="$kitchen->id"/>
+        <br/>
+    @endforeach
 </div>

@@ -37,4 +37,11 @@ return [
             ],
         ],
     ],
+    'restaurants' => [
+        'information' => [
+            'location' => 'Location',
+            'opening-hours' => 'Opening hours',
+            'seats' => 'Seats',
+        ]
+    ]
 ];
