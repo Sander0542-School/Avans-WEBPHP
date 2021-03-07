@@ -18,4 +18,5 @@ class Cinema extends Model
     {
         return $this->hasManyThrough(CinemaShow::class, CinemaHall::class);
     }
+
 }

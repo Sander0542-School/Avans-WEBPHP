@@ -108,3 +108,30 @@
 .small {
   font-size: .875rem !important;
 }
+
+// Ticket counter
+
+.inline-group {
+    max-width: 9rem;
+
+    .form-control {
+        text-align: right;
+    }
+
+    .form-control[type="number"] {
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
+}
+  
+// Pagination
+
+.pagination {
+    justify-content: center;
+}

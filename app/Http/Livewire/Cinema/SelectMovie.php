@@ -28,12 +28,13 @@ class SelectMovie extends Component
 
     public function render()
     {
+
+
         $movie = null;
         $this->show = CinemaShow::find($this->movieId);
         if($this->show != null){
             $movie = CinemaMovie::find($this->show->movie_id);
         }
-
 
         if ($movie != null) {
             $this->emitUp('movieChanged', $movie, $this->show);

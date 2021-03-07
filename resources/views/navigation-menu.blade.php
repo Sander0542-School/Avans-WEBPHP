@@ -11,8 +11,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                    {{ __('Dashboard') }}
+                <x-jet-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
+                    {{ __('layout.navigation.home') }}
+                </x-jet-nav-link>
+                <x-jet-nav-link href="{{ route('home.events') }}" :active="request()->routeIs('home.events')">
+                    {{ __('layout.navigation.home-events') }}
+                </x-jet-nav-link>
+                <x-jet-nav-link href="{{ route('home.restaurants') }}" :active="request()->routeIs('home.restaurants')">
+                    {{ __('layout.navigation.home-restaurants') }}
                 </x-jet-nav-link>
             </ul>
 

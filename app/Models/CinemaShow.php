@@ -9,6 +9,16 @@ class CinemaShow extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'start_datetime' => 'datetime',
+        'end_datetime' => 'datetime'
+    ];
+
+    public function cinema()
+    {
+        return $this->hasOneThrough(Cinema::class, CinemaHall::class, 'id', 'id', 'cinema_hall_id', 'cinema_id');
+    }
+
     public function hall()
     {
         return $this->hasOne(CinemaHall::class, 'id', 'cinema_hall_id');

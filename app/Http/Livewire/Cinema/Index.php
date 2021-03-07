@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Cinema;
 
 use App\Models\Cinema;
-use App\Models\CinemaHall;
 use App\Models\CinemaMovie;
 use App\Models\CinemaShow;
 use Livewire\Component;
@@ -12,6 +11,8 @@ class Index extends Component
 {
     protected $listeners = [
         'cinemaChanged' => 'cinemaChanged',
+        'decrementStep' => 'decrementStep',
+        'refresh' => 'refresh',
         'cinemaDeselected' => 'clearCinema',
         'movieChanged' => 'movieChanged',
         'movieDeselected' => 'movieDeselect',
@@ -37,6 +38,7 @@ class Index extends Component
     public $step;
 
     public $show;
+
     public function mount()
     {
         $this->step = 1;
@@ -49,25 +51,26 @@ class Index extends Component
 
     public function cinemaChanged(Cinema $cinema)
     {
+        $this->clearMovie();
         $this->cinema = $cinema;
         $this->cinemaId = $cinema->id;
-        //$this->movies = $cinema->shows()->where('start_datetime', '>', now() )->get();
         $this->movies = $cinema->shows()->get();
-
 
     }
 
-    public function clearCinema()
+    public function clearMovie()
     {
-        $this->cinema = null;
-        $this->movies = [];
-        $this->resetCinema();
+        $this->movie = null;
+        $this->movieId = null;
+        $this->persons = null;
+        $this->selectPeople = false;
     }
 
     public function incrementStep()
     {
         $this->step++;
     }
+
     public function decrementStep()
     {
         $this->step--;
@@ -79,22 +82,21 @@ class Index extends Component
         $this->show = $show;
         $this->movieId = $movie->id;
         $this->selectPeople = true;
-
     }
 
     public function movieDeselect()
     {
         $this->selectPeople = false;
-
     }
 
-    public function clearMovie()
-    {
-        $this->movie = null;
-    }
 
     private function resetCinema()
     {
         $this->selectStep = false;
+    }
+
+    public function refresh()
+    {
+
     }
 }

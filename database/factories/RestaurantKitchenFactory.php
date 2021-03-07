@@ -30,7 +30,7 @@ class RestaurantKitchenFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (RestaurantKitchen $kitchen) {
-            $kitchen->restaurants()->saveMany(Restaurant::factory($this->faker->numberBetween(2, 8))->create([
+            $kitchen->restaurants()->saveMany(Restaurant::factory($this->faker->numberBetween(2, 10))->create([
                 'restaurant_kitchen_id' => $kitchen->id,
             ]));
         });
