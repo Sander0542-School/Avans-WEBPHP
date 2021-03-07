@@ -4,13 +4,32 @@
         <table class="table-sm table-borderless">
 
             <tbody>
-            @for ($seat = 0; $seat < $show->hall->chair_rows; $seat++)
+            @foreach($rows as $row => $chairs)
                 <tr>
-                    @for ($row = 0; $row < $show->hall->chair_row_seats; $row++)
-                        <td > <button {{$row}} {{$seat}} wire:click="decrementStep" type="button" class="btn btn-primary"><i class="fas fa-chair"></i></button></td>
-                    @endfor
+                @foreach($chairs as $chair => $val)
+
+                    @if($val['state'] == "reserved")
+                        <td > <button  disabled type="button" class="btn btn-danger disabled "><i class="fas fa-chair"></i></button></td>
+                    @elseif($val['state'] == "blocked")
+                        <td > <button  disabled type="button" class="btn   btn-secondary disabled "><i class="fas fa-chair"></i></button></td>
+                    @else
+                        <td > <button  wire:click="selectChair({{$row}}, {{$chair}})" type="button" class="btn btn-primary"><i class="fas fa-chair"></i></button></td>
+
+                    @endif
+
+
+                @endforeach
                 </tr>
-            @endfor
+            @endforeach
+
+
+{{--            @for ($seat = 1; $seat <= $show->hall->chair_rows; $seat++)--}}
+{{--                <tr>--}}
+{{--                    @for ($row = 1; $row <= $show->hall->chair_row_seats; $row++)--}}
+{{--                        <td > <button  wire:click="decrementStep" type="button" class="btn btn-primary">{{$row}} {{$seat}}<i class="fas fa-chair"></i></button></td>--}}
+{{--                    @endfor--}}
+{{--                </tr>--}}
+{{--            @endfor--}}
             </tbody>
         </table>
         <div class="form-group">
@@ -22,3 +41,7 @@
 
     </div>
 </div>
+<script>
+
+
+</script>

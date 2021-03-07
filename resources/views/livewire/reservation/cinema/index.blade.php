@@ -5,7 +5,7 @@
 </x-slot>
 
 
-<div class="container">
+<div class="container-fluid">
 
     @if($step == 1)
     <div class="card">

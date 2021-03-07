@@ -32,7 +32,7 @@
         @endif
 
         <!-- Page Content -->
-        <main class="container my-5">
+        <main id="Main" class="container my-5">
             {{ $slot }}
         </main>
 
