@@ -39,6 +39,11 @@ class Index extends Component
 
     public $show;
 
+
+    protected $rules = [
+        'persons' => 'required|integer|between:1,6',
+    ];
+
     public function mount()
     {
         $this->step = 1;
@@ -68,6 +73,7 @@ class Index extends Component
 
     public function incrementStep()
     {
+        $this->validate();
         $this->step++;
     }
 

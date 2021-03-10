@@ -12,6 +12,8 @@
                         <td > <button  disabled type="button" class="btn btn-danger disabled "><i class="fas fa-chair"></i></button></td>
                     @elseif($val['state'] == "blocked")
                         <td > <button  disabled type="button" class="btn   btn-secondary disabled "><i class="fas fa-chair"></i></button></td>
+                        @elseif($val['state'] == "picked")
+                            <td > <button  disabled type="button" class="btn   btn-success disabled "><i class="fas fa-chair"></i></button></td>
                     @else
                         <td > <button  wire:click="selectChair({{$row}}, {{$chair}})" type="button" class="btn btn-primary"><i class="fas fa-chair"></i></button></td>
 
