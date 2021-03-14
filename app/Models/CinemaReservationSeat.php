@@ -11,6 +11,8 @@ class CinemaReservationSeat extends Model
 
     public $timestamps = false;
 
+    protected $fillable = ["cinema_reservation_id", "row_id", "seat_id"];
+
     public function reservation()
     {
         return $this->hasOne(CinemaReservation::class, 'id', 'cinema_reservation_id');

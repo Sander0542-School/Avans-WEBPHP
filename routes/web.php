@@ -5,6 +5,7 @@ use App\Http\Livewire\Reservation\Event\Index as ReservationEventIndex;
 use App\Http\Livewire\Home\Events as HomeEvents;
 use App\Http\Livewire\Home\Index as HomeIndex;
 use App\Http\Livewire\Home\Restaurants as HomeRestaurants;
+use App\Http\Livewire\Cinema\Index as CinemaIndex;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +30,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/events', HomeEvents::class)->name('home.events');
     Route::get('/restaurants', HomeRestaurants::class)->name('home.restaurants');
 
-    Route::get('/cinema', function () {return view('cinema.index');})->name('cinema.index');
+    Route::get('/cinema', CinemaIndex::class)->name('home.cinemas');
 
     Route::get('/dashboard', function () {
         return view('dashboard');
