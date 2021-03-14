@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/reservation/event', ReservationEventIndex::class)->name('reservation.event');
-  
+
     Route::get('/home', HomeIndex::class)->name('home');
     Route::get('/events', HomeEvents::class)->name('home.events');
     Route::get('/restaurants', HomeRestaurants::class)->name('home.restaurants');
