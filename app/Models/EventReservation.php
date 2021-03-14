@@ -30,4 +30,12 @@ class EventReservation extends Model
     {
         return $this->hasOne(EventReservation::class);
     }
+
+    /**
+     * Get the event for the reservation.
+     */
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

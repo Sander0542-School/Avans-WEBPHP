@@ -20,6 +20,9 @@
                 <x-jet-nav-link href="{{ route('home.restaurants') }}" :active="request()->routeIs('home.restaurants')">
                     {{ __('layout.navigation.home-restaurants') }}
                 </x-jet-nav-link>
+                <x-jet-nav-link href="{{ route('downloads.index') }}" :active="request()->routeIs('downloads.index')">
+                    {{ __('layout.navigation.downloads') }}
+                </x-jet-nav-link>
             </ul>
 
             <!-- Right Side Of Navbar -->
