@@ -62,6 +62,11 @@ class Ticket extends Component
         ];
     }
 
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
     public function mount()
     {
         $this->event = Event::find($this->eventId);

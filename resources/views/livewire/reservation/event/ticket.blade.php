@@ -7,7 +7,7 @@
                     <i class="fa fa-minus"></i>
                 </button>
             </div>
-            <input id="inputTicketCount" type="number" min="1" max="{{ $maxTickets }}" wire:model="ticketCount" class="form-control quantity" readonly/>
+            <input id="inputTicketCount" type="number" min="1" max="{{ $maxTickets }}" wire:model="ticketCount" class="form-control quantity @error('ticketCount') is-invalid @enderror" readonly/>
             <div class="input-group-append">
                 <button wire:click="incrementTicket" class="btn btn-outline-secondary" @if($ticketCount >= $maxTickets) disabled @endif>
                     <i class="fa fa-plus"></i>
@@ -20,7 +20,7 @@
         @if (sizeof($event->days) > 1)
             <div class="form-group">
                 <label for="inputDayCount">@lang('reservation.event.form.day-count.label')</label>
-                <select id="inputDayCount" wire:model="dayCount" class="form-control">
+                <select id="inputDayCount" wire:model="dayCount" class="form-control @error('dayCount') is-invalid @enderror">
                     <option>@lang('reservation.event.form.day-count.option.default')</option>
                     @if (sizeof($event->days) > 1)
                         <option value="1">@lang('reservation.event.form.day-count.option.1')</option>
@@ -30,11 +30,12 @@
                     @endif
                     <option value="0">@lang('reservation.event.form.day-count.option.all')</option>
                 </select>
+                @error('dayCount') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
             @if (!empty($dayCount) && $dayCount != '0' && !($dayCount == '2' && sizeof($event->days) == 2) && !($dayCount == '1' && sizeof($event->days) == 1))
                 <div class="form-group">
                     <label for="inputStartDay">@lang('reservation.event.form.start-date.label')</label>
-                    <select id="inputStartDay" wire:model="startDate" class="form-control">
+                    <select id="inputStartDay" wire:model="startDate" class="form-control @error('startDate') is-invalid @enderror">
                         <option>@lang('reservation.event.form.start-date.option.default')</option>
                         @foreach($event->days as $day)
                             @if(!($dayCount == '2' && $day->format('Y-m-d') == $event->end_datetime->format('Y-m-d')))
@@ -42,6 +43,7 @@
                             @endif
                         @endforeach
                     </select>
+                    @error('startDate') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
             @endif
         @endif

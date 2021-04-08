@@ -91,35 +91,8 @@
             </div>
         </div>
     @elseif($reservationStep == 5)
-        <div class="row">
-            <div class="col-4 offset-4">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h5 class="card-title">@lang('reservation.event.title.step.5')</h5>
-
-                        <i class="fas fa-check-circle fa-10x text-success"></i>
-                        <br/>
-                        <br/>
-                        <button class="btn btn-primary" wire:click="goHome">@lang('reservation.event.button.home')</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <livewire:common.cards.success :title="__('reservation.event.title.step.5')"/>
     @elseif($reservationStep == 6)
-        <div class="row">
-            <div class="col-4 offset-4">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h5 class="card-title">@lang('reservation.event.title.step.6')</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">@lang('reservation.event.message.could-not-create')</h6>
-
-                        <i class="fas fa-exclamation-circle fa-10x text-danger"></i>
-                        <br/>
-                        <br/>
-                        <button class="btn btn-primary" wire:click="goHome">@lang('reservation.event.button.home')</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <livewire:common.cards.error :title="__('reservation.event.title.step.6')" :subtitle="__('reservation.event.message.could-not-create')"/>
     @endif
 </div>

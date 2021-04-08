@@ -16,7 +16,7 @@ class Restaurant extends Model
 
     public function kitchen()
     {
-        return $this->hasOne(RestaurantKitchen::class);
+        return $this->hasOne(RestaurantKitchen::class, 'id', 'restaurant_kitchen_id');
     }
 
     public function reservations()
