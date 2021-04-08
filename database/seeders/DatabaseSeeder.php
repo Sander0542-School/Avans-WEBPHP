@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             'zip_code' => '1234 AB',
             'street' => 'Weglaan',
             'building_number' => '12',
+            'admin' => 1,
         ]);
 
         User::factory(10)->create();

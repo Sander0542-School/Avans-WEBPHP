@@ -13,7 +13,7 @@
                     <br/>
                 @endif
 
-                <button class="btn btn-primary" wire:click="goHome">@lang('home.button.go')</button>
+                <button class="btn btn-primary" wire:click="goHome">{{ __('home.button.go') }}</button>
             </div>
         </div>
     </div>

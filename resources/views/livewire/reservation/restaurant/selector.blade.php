@@ -1,8 +1,8 @@
 <div>
     <div class="form-group">
-        <label for="inputRestaurantId">@lang('reservation.restaurant.form.restaurant.label')</label>
+        <label for="inputRestaurantId">{{ __('reservation.restaurant.form.restaurant.label') }}</label>
         <select id="inputRestaurantId" wire:model="restaurantId" class="form-control">
-            <option>@lang('reservation.restaurant.form.restaurant.option.default')</option>
+            <option>{{ __('reservation.restaurant.form.restaurant.option.default') }}</option>
             @foreach($restaurants as $restaurant)
                 <option value="{{ $restaurant->id }}">{{ $restaurant->name }} ({{ $restaurant->kitchen->name }})</option>
             @endforeach
@@ -10,6 +10,6 @@
     </div>
 
     @if($dataValid)
-        <button wire:click="confirmRestaurant" class="btn btn-primary">@lang('reservation.restaurant.button.confirm-restaurant')</button>
+        <button wire:click="confirmRestaurant" class="btn btn-primary">{{ __('reservation.restaurant.button.confirm-restaurant') }}</button>
     @endif
 </div>
