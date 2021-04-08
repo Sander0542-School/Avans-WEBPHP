@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\CinemaController;
+use App\Http\Controllers\HallController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ShowController;
 use App\Http\Livewire\Reservation\Event\Index as ReservationEventIndex;
 use App\Http\Livewire\Home\Events as HomeEvents;
 use App\Http\Livewire\Home\Index as HomeIndex;
@@ -26,6 +29,10 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/reservation/event', ReservationEventIndex::class)->name('reservation.event');
 
+    Route::resource('cinemas', CinemaController::class);
+    Route::resource('cinemas.halls', HallController::class)->shallow();
+    Route::resource('halls.shows', ShowController::class)->shallow();
+
     Route::get('/home', HomeIndex::class)->name('home');
     Route::get('/events', HomeEvents::class)->name('home.events');
     Route::get('/restaurants', HomeRestaurants::class)->name('home.restaurants');
@@ -35,4 +42,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+
 });

@@ -3,19 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cinema;
+use App\Models\CinemaHall;
+use App\Models\CinemaShow;
 use Illuminate\Http\Request;
 
-class CinemaController extends Controller
+class ShowController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($hallId)
     {
-        $cinemas = Cinema::paginate(5);
-        return view('Cinema.list', compact('cinemas'));
+        //$shows = CinemaShow::with('movie')->with('cinema')->with('hall')->where('cinema_hall_id',$hallId)->get();
+
+        $hall = CinemaHall::where('id', $hallId)->with('shows.movie')->with('cinema')->first();
+//dd($hall);
+        return view('Cinema.Shows.index', compact( 'hall'));
     }
 
     /**
@@ -23,9 +28,9 @@ class CinemaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($cinemaId)
     {
-        return view('Cinema.create');
+        return view('Cinema.Halls.create', compact('cinemaId'));
     }
 
     /**
@@ -37,14 +42,24 @@ class CinemaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|unique:cinemas|max:255',
-            'location' => 'required',
+            'cinema' => 'required|exists:cinemas,id',
+            'chair_rows' => 'required|integer|max:50',
+            'chair_row_seats' => 'required|integer|max:50'
         ]);
 
-        $cinema = new Cinema($request->only('name', 'location'));
-        $cinema->save();
 
-        return redirect()->route('cinemas.index');
+
+        $hall = new CinemaHall(
+            [
+                'chair_rows' => $request->input('chair_rows'),
+                'chair_row_seats' => $request->input('chair_row_seats')
+            ]);
+
+        $cinema = Cinema::findOrFail($request->input('cinema'));
+        $cinema->halls()->save($hall);
+
+
+        return redirect()->route('cinemas.halls.index', $cinema->id);
     }
 
     /**
@@ -66,9 +81,7 @@ class CinemaController extends Controller
      */
     public function edit($id)
     {
-
-        $cinema = Cinema::findOrFail($id);
-        return view('Cinema.edit', compact('cinema'));
+        //
     }
 
     /**
@@ -80,18 +93,7 @@ class CinemaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'name' => 'required|unique:cinemas,name,'.$id,
-            'location' => 'required',
-        ]);
-
-        $cinema = Cinema::findOrFail($id);
-        $cinema->name = $request->input('name');
-        $cinema->location = $request->input('location');
-        $cinema->save();
-
-        return redirect()->route('cinemas.index');
-
+        //
     }
 
     /**
@@ -102,8 +104,6 @@ class CinemaController extends Controller
      */
     public function destroy($id)
     {
-        $cinema = Cinema::findOrFail($id);
-        $cinema->delete();
-        return redirect()->route('cinemas.index');
+        //
     }
 }

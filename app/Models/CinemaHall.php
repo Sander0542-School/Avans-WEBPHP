@@ -9,9 +9,11 @@ class CinemaHall extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['chair_rows', 'chair_row_seats'];
+
     public function cinema()
     {
-        return $this->hasOne(Cinema::class);
+        return $this->hasOne(Cinema::class, 'id', 'cinema_id');
     }
 
     public function shows()

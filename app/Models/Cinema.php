@@ -9,6 +9,8 @@ class Cinema extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'location'];
+
     public function halls()
     {
         return $this->hasMany(CinemaHall::class);
