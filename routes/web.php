@@ -19,23 +19,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('', HomeIndex::class)->name('home');
+Route::get('events', HomeEvents::class)->name('home.events');
+Route::get('restaurants', HomeRestaurants::class)->name('home.restaurants');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/reservation/event', ReservationEventIndex::class)->name('reservation.event');
-
-    Route::get('/home', HomeIndex::class)->name('home');
-    Route::get('/events', HomeEvents::class)->name('home.events');
-    Route::get('/restaurants', HomeRestaurants::class)->name('home.restaurants');
-
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::prefix('reservation')->name('reservation.')->group(function () {
+        Route::get('event', ReservationEventIndex::class)->name('event');
+    });
 
     Route::prefix('/downloads')->group(function () {
         Route::get('', [DownloadController::class, 'index'])->name('downloads.index');
         Route::get('events', [DownloadController::class, 'events'])->name('downloads.events');
     });
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });

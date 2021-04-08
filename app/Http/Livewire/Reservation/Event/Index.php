@@ -8,6 +8,10 @@ use Livewire\Component;
 
 class Index extends Component
 {
+    protected $queryString = [
+        'eventId'
+    ];
+
     protected $listeners = [
         'eventSelected' => 'eventSelected',
         'eventDeselected' => 'eventDeselected',
@@ -20,9 +24,20 @@ class Index extends Component
      */
     public $event;
 
+    public $eventId;
+
     public $reservationStep = 0;
 
     public $reservation = [];
+
+    public function mount()
+    {
+        if (!empty($this->eventId)) {
+            $event = Event::find($this->eventId);
+
+            $this->eventSelected($event);
+        }
+    }
 
     public function render()
     {
@@ -32,6 +47,7 @@ class Index extends Component
     private function resetEvent()
     {
         $this->reservationStep = $this->event == null ? 0 : 1;
+        $this->eventId = $this->event == null ? null : $this->event->id;
     }
 
     public function eventSelected(Event $event)
@@ -85,7 +101,8 @@ class Index extends Component
         }
     }
 
-    public function goHome() {
+    public function goHome()
+    {
         $this->redirectRoute('home');
     }
 }

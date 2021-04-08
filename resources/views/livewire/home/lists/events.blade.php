@@ -44,7 +44,7 @@
                     <tbody>
 
                     @foreach($events as $event)
-                        <tr>
+                        <tr class="c-pointer" onclick="window.location.href = this.dataset.href" data-href="{{ $event['reservation_url'] }}">
                             <td><i class="fas fa-{{ $event['icon'] }}"></i></td>
                             <td>{{ $event['name'] }}</td>
                             <td>{{ $event['location'] }}</td>
