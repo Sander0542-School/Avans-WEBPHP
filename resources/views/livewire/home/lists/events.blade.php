@@ -2,12 +2,12 @@
     <div class="col-3">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">@lang('home.lists.events.section.order.title')</h5>
+                <h5 class="card-title">{{ __('home.lists.events.section.order.title') }}</h5>
                 <div class="form-group">
                     <select wire:model="order" class="form-control" id="inputOrder">
                         @foreach($sortOrders as $sortOrder)
-                            <option value="{{ $sortOrder }}-asc">@lang('home.lists.events.section.order.option.'.$sortOrder.'-asc')</option>
-                            <option value="{{ $sortOrder }}-desc">@lang('home.lists.events.section.order.option.'.$sortOrder.'-desc')</option>
+                            <option value="{{ $sortOrder }}-asc">{{ __('home.lists.events.section.order.option.'.$sortOrder.'-asc') }}</option>
+                            <option value="{{ $sortOrder }}-desc">{{ __('home.lists.events.section.order.option.'.$sortOrder.'-desc') }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -16,14 +16,14 @@
         <br/>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">@lang('home.lists.events.section.types.title')</h5>
+                <h5 class="card-title">{{ __('home.lists.events.section.types.title') }}</h5>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" wire:model="showEvents" id="inputShowEvents">
-                    <label class="form-check-label" for="inputShowEvents">@lang('home.lists.events.section.types.option.events')</label>
+                    <label class="form-check-label" for="inputShowEvents">{{ __('home.lists.events.section.types.option.events') }}</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" wire:model="showMovies" id="inputShowMovies">
-                    <label class="form-check-label" for="inputShowMovies">@lang('home.lists.events.section.types.option.movies')</label>
+                    <label class="form-check-label" for="inputShowMovies">{{ __('home.lists.events.section.types.option.movies') }}</label>
                 </div>
             </div>
         </div>
@@ -35,9 +35,9 @@
                     <thead>
                     <tr>
                         <th></th>
-                        <th>@lang('home.lists.events.header.name')</th>
-                        <th>@lang('home.lists.events.header.location')</th>
-                        <th>@lang('home.lists.events.header.duration')</th>
+                        <th>{{ __('home.lists.events.header.name') }}</th>
+                        <th>{{ __('home.lists.events.header.location') }}</th>
+                        <th>{{ __('home.lists.events.header.duration') }}</th>
                         <td/>
                     </tr>
                     </thead>

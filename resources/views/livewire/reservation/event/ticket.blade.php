@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-6">
-        <label for="inputTicketCount">@lang('reservation.event.form.ticket-count.label')</label>
+        <label for="inputTicketCount">{{ __('reservation.event.form.ticket-count.label') }}</label>
         <div class="input-group inline-group">
             <div class="input-group-prepend">
                 <button wire:click="decreaseTicket" class="btn btn-outline-secondary" @if($ticketCount <= 1) disabled @endif>
@@ -19,24 +19,24 @@
     <div class="col-6">
         @if (sizeof($event->days) > 1)
             <div class="form-group">
-                <label for="inputDayCount">@lang('reservation.event.form.day-count.label')</label>
+                <label for="inputDayCount">{{ __('reservation.event.form.day-count.label') }}</label>
                 <select id="inputDayCount" wire:model="dayCount" class="form-control @error('dayCount') is-invalid @enderror">
-                    <option>@lang('reservation.event.form.day-count.option.default')</option>
+                    <option>{{ __('reservation.event.form.day-count.option.default') }}</option>
                     @if (sizeof($event->days) > 1)
-                        <option value="1">@lang('reservation.event.form.day-count.option.1')</option>
+                        <option value="1">{{ __('reservation.event.form.day-count.option.1') }}</option>
                     @endif
                     @if (sizeof($event->days) > 2)
-                        <option value="2">@lang('reservation.event.form.day-count.option.2')</option>
+                        <option value="2">{{ __('reservation.event.form.day-count.option.2') }}</option>
                     @endif
-                    <option value="0">@lang('reservation.event.form.day-count.option.all')</option>
+                    <option value="0">{{ __('reservation.event.form.day-count.option.all') }}</option>
                 </select>
                 @error('dayCount') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
             @if (!empty($dayCount) && $dayCount != '0' && !($dayCount == '2' && sizeof($event->days) == 2) && !($dayCount == '1' && sizeof($event->days) == 1))
                 <div class="form-group">
-                    <label for="inputStartDay">@lang('reservation.event.form.start-date.label')</label>
+                    <label for="inputStartDay">{{ __('reservation.event.form.start-date.label') }}</label>
                     <select id="inputStartDay" wire:model="startDate" class="form-control @error('startDate') is-invalid @enderror">
-                        <option>@lang('reservation.event.form.start-date.option.default')</option>
+                        <option>{{ __('reservation.event.form.start-date.option.default') }}</option>
                         @foreach($event->days as $day)
                             @if(!($dayCount == '2' && $day->format('Y-m-d') == $event->end_datetime->format('Y-m-d')))
                                 <option value="{{ $day->format('Y-m-d') }}">{{ $day->format('d F') }}</option>
@@ -51,7 +51,7 @@
 
     @if($dataValid)
         <div class="col-12">
-            <button wire:click="confirmTicket" class="btn btn-primary">@lang('reservation.event.button.upload-picture')</button>
+            <button wire:click="confirmTicket" class="btn btn-primary">{{ __('reservation.event.button.upload-picture') }}</button>
         </div>
     @endif
 </div>
