@@ -66,7 +66,6 @@ class CinemaController extends Controller
      */
     public function edit($id)
     {
-
         $cinema = Cinema::findOrFail($id);
         return view('Cinema.edit', compact('cinema'));
     }

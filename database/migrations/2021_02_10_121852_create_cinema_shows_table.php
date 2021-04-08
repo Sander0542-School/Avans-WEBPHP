@@ -19,6 +19,7 @@ class CreateCinemaShowsTable extends Migration
             $table->unsignedBigInteger('movie_id');
             $table->dateTime('start_datetime');
             $table->dateTime('end_datetime');
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('movie_id')->references('id')->on('cinema_movies');
