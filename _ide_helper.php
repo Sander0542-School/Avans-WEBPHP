@@ -10712,6 +10712,18 @@
         {
                         return \Illuminate\Routing\ResponseFactory::hasMacro($name);
         }
+                    /**
+         * Return a CSV file as download
+         *
+         * @param string $content
+         * @return \Response 
+         * @see \App\Providers\AppServiceProvider::boot()
+         * @static 
+         */ 
+        public static function csv($content, $filename = 'download.csv')
+        {
+                        return \Illuminate\Routing\ResponseFactory::csv($content, $filename);
+        }
          
     }
             /**
@@ -14630,6 +14642,28 @@
         class Str {
          
     }
+            /**
+     * 
+     *
+     */ 
+        class Collection {
+                    /**
+         * Paginate a standard Laravel Collection.
+         *
+         * @param int $perPage
+         * @param int $total
+         * @param int $page
+         * @param string $pageName
+         * @return array 
+         * @see \App\Providers\AppServiceProvider::boot()
+         * @static 
+         */ 
+        public static function paginate($perPage, $total = null, $page = null, $pageName = 'page')
+        {
+                        return \Illuminate\Support\Collection::paginate($perPage, $total, $page, $pageName);
+        }
+         
+    }
      
 }
 
@@ -15870,6 +15904,25 @@
         public static function inertia($uri, $component, $props = [])
         {
                         return \Illuminate\Routing\Router::inertia($uri, $component, $props);
+        }
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class ResponseFactory {
+                    /**
+         * Return a CSV file as download
+         *
+         * @param string $content
+         * @return \Response 
+         * @see \App\Providers\AppServiceProvider::boot()
+         * @static 
+         */ 
+        public static function csv($content, $filename = 'download.csv')
+        {
+                        return \Illuminate\Routing\ResponseFactory::csv($content, $filename);
         }
          
     }

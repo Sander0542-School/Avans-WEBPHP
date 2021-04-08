@@ -4,37 +4,36 @@
     </h2>
 </x-slot>
 
-
 <div class="container-fluid">
 
     @if($step == 1)
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">@lang('reservation.event.index.title.select')</h5>
-            <livewire:cinema.select-cinema :cinemaId="$cinemaId" />
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@lang('reservation.event.index.title.select')</h5>
+                <livewire:cinema.select-cinema :cinemaId="$cinemaId"/>
 
-            @if(count($movies) > 0)
-                <livewire:cinema.select-movie :movies="$movies" :movieId="$movieId" />
-                @if($selectPeople)
-                    <div class="form-group">
-                        <label>Aantal personen (tussen 1 en de 6):</label>
-                        <input wire:model="persons" type="number" class="form-control" min="1" max="6">
-                        @error('persons') <span class="error">{{ $message }}</span> @enderror
-                    </div>
-                    @if($persons >= 1)
+                @if(count($movies) > 0)
+                    <livewire:cinema.select-movie :movies="$movies" :movieId="$movieId"/>
+                    @if($selectPeople)
                         <div class="form-group">
-                            <button class="btn-primary btn" wire:click="incrementStep">Stoelen kiezen</button>
+                            <label>Aantal personen (tussen 1 en de 6):</label>
+                            <input wire:model="persons" type="number" class="form-control" min="1" max="6">
+                            @error('persons') <span class="error">{{ $message }}</span> @enderror
                         </div>
+                        @if($persons >= 1)
+                            <div class="form-group">
+                                <button class="btn-primary btn" wire:click="incrementStep">Stoelen kiezen</button>
+                            </div>
+                        @endif
                     @endif
                 @endif
 
-            @endif
-
-
+            </div>
         </div>
-    </div>
+
     @elseif($step == 2)
-        <livewire:cinema.select-chair :show="$show" :persons="$persons" />
+        <livewire:cinema.select-chair :show="$show" :persons="$persons"/>
     @endif
+
 </div>
 

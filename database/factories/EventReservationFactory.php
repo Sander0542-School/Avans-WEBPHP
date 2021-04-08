@@ -25,7 +25,7 @@ class EventReservationFactory extends Factory
         return [
             'user_id' => User::inRandomOrder()->first()->id,
             'ticket_count' => $this->faker->numberBetween(1,3),
-            'picture' => '/reservation/event/default.jpg',
+            'picture' => 'reservations/event/example.jpg'
         ];
     }
 }

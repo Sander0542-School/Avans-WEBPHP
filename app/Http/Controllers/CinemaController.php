@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cinema;
+use App\Models\CinemaReservation;
 use Illuminate\Http\Request;
 
 class CinemaController extends Controller
@@ -16,6 +17,17 @@ class CinemaController extends Controller
     {
         $cinemas = Cinema::paginate(5);
         return view('Cinema.list', compact('cinemas'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function confirm($id)
+    {
+        $reservation = CinemaReservation::findOrFail($id);
+        return view('Cinema.confirm', compact('reservation'));
     }
 
     /**

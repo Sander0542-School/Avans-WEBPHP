@@ -23,6 +23,9 @@
                 <x-jet-nav-link href="{{ route('home.cinemas') }}" :active="request()->routeIs('home.cinemas')">
                     {{ __('layout.navigation.home-cinemas') }}
                 </x-jet-nav-link>
+                <x-jet-nav-link href="{{ route('downloads.index') }}" :active="request()->routeIs('downloads.index')">
+                    {{ __('layout.navigation.downloads') }}
+                </x-jet-nav-link>
             </ul>
 
             <!-- Right Side Of Navbar -->

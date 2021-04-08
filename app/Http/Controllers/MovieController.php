@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\HallStoreRequest;
 use App\Models\Cinema;
 use App\Models\CinemaHall;
+use App\Models\CinemaMovie;
 use Illuminate\Http\Request;
 
-class HallController extends Controller
+class MovieController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($cinemaId)
+    public function index()
     {
-        $cinema = Cinema::findOrFail($cinemaId);
-        $halls = $cinema->halls()->paginate(5);
-        return view('Cinema.Halls.index', compact('cinema', 'halls'));
+        $movies = CinemaMovie::paginate(5);
+        return view('Cinema.Movies.index', compact('movies'));
     }
 
     /**
@@ -26,9 +25,9 @@ class HallController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($cinemaId)
+    public function create()
     {
-        return view('Cinema.Halls.create', compact('cinemaId'));
+        return view('Cinema.Movies.create');
     }
 
     /**
@@ -37,18 +36,17 @@ class HallController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(HallStoreRequest $request)
+    public function store(Request $request)
     {
-        $hall = new CinemaHall(
-            [
-                'chair_rows' => $request->input('chair_rows'),
-                'chair_row_seats' => $request->input('chair_row_seats')
-            ]);
+        $validated = $request->validate([
+            'title' => 'required|max:50',
+        ]);
 
-        $cinema = Cinema::findOrFail($request->input('cinema'));
-        $cinema->halls()->save($hall);
+        $movie = new CinemaMovie(['title' => $request->input('title'),]);
 
-        return redirect()->route('cinemas.halls.index', $cinema->id);
+        $movie->save();
+
+        return redirect()->route('movies.index');
     }
 
     /**
@@ -70,9 +68,9 @@ class HallController extends Controller
      */
     public function edit($id)
     {
-        $hall = CinemaHall::findOrFail($id);
+        $movie = CinemaMovie::findOrFail($id);
 
-        return view('Cinema.Halls.edit', compact('hall'));
+        return view('Cinema.Movies.edit', compact('movie'));
     }
 
     /**
@@ -84,6 +82,15 @@ class HallController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+            'title' => 'required|max:50',
+        ]);
+
+        $movie = CinemaMovie::findOrFail($id);
+        $movie->title = $request->input('title');
+        $movie->save();
+
+        return redirect()->route('movies.index');
 
     }
 
@@ -95,8 +102,8 @@ class HallController extends Controller
      */
     public function destroy($id)
     {
-        $hall = CinemaHall::findOrFail($id);
-        $hall->delete();
-        return redirect()->route('cinemas.halls.index', $hall->cinema_id);
+        $movie = CinemaMovie::findOrFail($id);
+        $movie->delete();
+        return redirect()->route('movies.index');
     }
 }

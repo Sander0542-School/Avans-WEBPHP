@@ -29,12 +29,12 @@
                                 <td>{{ $hall->chair_rows }}</td>
                                 <td>{{ $hall->chair_row_seats }}</td>
                                 <td><a class="btn btn-primary" role="button" href="{{ route('halls.shows.index', $hall->id) }}">Shows bekijken</a>
-{{--                                    <form action="{{ route('halls.destroy', $hall->id) }}" method="POST">--}}
-{{--                                        @method('DELETE')--}}
+                                    <form action="{{ route('halls.destroy', $hall->id) }}" method="POST">
+                                        @method('DELETE')
 
-{{--                                        @csrf--}}
-{{--                                        <button class="btn btn-danger delete">Verwijder bioscoop</button>--}}
-{{--                                    </form>--}}
+                                        @csrf
+                                        <button class="btn btn-danger delete">Verwijder bioscoop</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

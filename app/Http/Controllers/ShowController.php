@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreShowRequest;
+use App\Http\Requests\UpdateShowRequest;
 use App\Models\Cinema;
 use App\Models\CinemaHall;
+use App\Models\CinemaMovie;
 use App\Models\CinemaShow;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ShowController extends Controller
@@ -16,10 +20,8 @@ class ShowController extends Controller
      */
     public function index($hallId)
     {
-        //$shows = CinemaShow::with('movie')->with('cinema')->with('hall')->where('cinema_hall_id',$hallId)->get();
-
         $hall = CinemaHall::where('id', $hallId)->with('shows.movie')->with('cinema')->first();
-//dd($hall);
+
         return view('Cinema.Shows.index', compact( 'hall'));
     }
 
@@ -28,9 +30,11 @@ class ShowController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($cinemaId)
+    public function create($hallId)
     {
-        return view('Cinema.Halls.create', compact('cinemaId'));
+        $movies = CinemaMovie::all();
+        $hall = CinemaMovie::findOrFail($hallId);
+        return view('Cinema.Shows.create', compact('hall', 'movies'));
     }
 
     /**
@@ -39,27 +43,21 @@ class ShowController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreShowRequest $request)
     {
-        $validated = $request->validate([
-            'cinema' => 'required|exists:cinemas,id',
-            'chair_rows' => 'required|integer|max:50',
-            'chair_row_seats' => 'required|integer|max:50'
-        ]);
+        $hall = CinemaHall::findOrFail($request->input('cinema_hall_id'));
 
-
-
-        $hall = new CinemaHall(
+        $show = new CinemaShow(
             [
-                'chair_rows' => $request->input('chair_rows'),
-                'chair_row_seats' => $request->input('chair_row_seats')
+                'movie_id' => $request->input('movie_id'),
+                'start_datetime' => $request->input('start_datetime'),
+                'end_datetime' => $request->input('end_datetime'),
             ]);
 
-        $cinema = Cinema::findOrFail($request->input('cinema'));
-        $cinema->halls()->save($hall);
+        $hall->shows()->save($show);
 
 
-        return redirect()->route('cinemas.halls.index', $cinema->id);
+        return redirect()->route('halls.shows.index', $hall->id);
     }
 
     /**
@@ -81,7 +79,11 @@ class ShowController extends Controller
      */
     public function edit($id)
     {
-        //
+        $show = CinemaShow::findOrFail($id);
+        $movies = CinemaMovie::all();
+
+        return view('Cinema.Shows.edit', compact('show', 'movies'));
+
     }
 
     /**
@@ -93,7 +95,31 @@ class ShowController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $validated = $request->validate([
+            'cinema_hall_id' => ['required','exists:cinema_halls,id', function($attribute, $value, $fail) use ($id, $request){
+                $start = Carbon::parse($request->input('start_datetime'));
+                $countShow = CinemaShow::where('cinema_hall_id', $value)->where('id', '!=' , $id)->whereDate('start_datetime', $start->format('Y.m.d'))->count();
+
+                if($countShow >= 3)
+                {
+                    $fail('Op deze dag draaien er al 3 films in deze zaal.');
+                }
+            }],
+            'movie_id' => 'required|exists:cinema_movies,id',
+            'start_datetime' => 'required|date|before:end_datetime',
+            'end_datetime' => 'required|date|after:start_date'
+        ]);
+
+        $show = CinemaShow::findOrFail($id);
+
+        $show->movie_id= $request->input('movie_id');
+        $show->start_datetime = $request->input('start_datetime');
+        $show->end_datetime = $request->input('end_datetime');
+        $show->save();
+
+
+        return redirect()->route('halls.shows.index', $show->cinema_hall_id);
     }
 
     /**

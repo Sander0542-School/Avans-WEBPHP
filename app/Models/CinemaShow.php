@@ -16,6 +16,8 @@ class CinemaShow extends Model
         'end_datetime' => 'datetime'
     ];
 
+    protected $fillable = ['movie_id', 'start_datetime', 'end_datetime'];
+
     public function cinema()
     {
         return $this->hasOneThrough(Cinema::class, CinemaHall::class, 'id', 'id', 'cinema_hall_id', 'cinema_id');

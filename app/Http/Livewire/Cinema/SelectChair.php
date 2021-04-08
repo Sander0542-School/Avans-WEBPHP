@@ -53,9 +53,12 @@ class SelectChair extends Component
         [$x, $counter] = $this->checkChairAvalibility($row, $chair, $counter);
 
         if ($counter == $this->persons) {
+            $this->selectedChairs = [];
             for ($x = 0; $x < $this->persons; $x++) {
+
                 array_push($this->selectedChairs, ["row_id" => $row, "seat_id" =>$chair + $x]);
                 $this->rows[$row][$chair + $x]['state'] = 'picked';
+
             }
         }
     }
@@ -84,8 +87,7 @@ class SelectChair extends Component
         $reservation->save();
         $reservation->seats()->createMany($this->selectedChairs);
 
-
-        return redirect()->to('/');
+        return redirect()->route('confirm.cinema', $reservation->id);
     }
 
     public function setReservations(): void
@@ -96,10 +98,12 @@ class SelectChair extends Component
                 if ($this->rows[$seat->row_id][$seat->seat_id]) {
 
                     if ($seat->seat_id != $this->show->hall->chair_row_seats) {
+
                         $this->rows[$seat->row_id][$seat->seat_id + 1]['state'] = 'blocked';
                     }
                     if ($seat->seat_id != 1) {
-                        if ($reservation->seats->count() > 1 && $key == 0) {
+                        if ($reservation->seats->count() >= 1 && $key == 0) {
+
                             $this->rows[$seat->row_id][$seat->seat_id - 1]['state'] = 'blocked';
                         }
                     }

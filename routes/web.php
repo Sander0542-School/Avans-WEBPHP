@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\CinemaController;
 use App\Http\Controllers\HallController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ShowController;
 use App\Http\Livewire\Reservation\Event\Index as ReservationEventIndex;
 use App\Http\Livewire\Home\Events as HomeEvents;
@@ -32,6 +33,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('cinemas', CinemaController::class);
     Route::resource('cinemas.halls', HallController::class)->shallow();
     Route::resource('halls.shows', ShowController::class)->shallow();
+    Route::resource('movies', MovieController::class)->shallow();
 
     Route::get('/home', HomeIndex::class)->name('home');
     Route::get('/events', HomeEvents::class)->name('home.events');
@@ -39,9 +41,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/cinema', CinemaIndex::class)->name('home.cinemas');
 
+    Route::get('/cinema/reservation/confirm/{id}', [CinemaController::class, 'confirm'])->name('confirm.cinema');
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
 
-
+    Route::prefix('/downloads')->group(function () {
+        Route::get('', [DownloadController::class, 'index'])->name('downloads.index');
+        Route::get('events', [DownloadController::class, 'events'])->name('downloads.events');
+    });
 });

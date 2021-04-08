@@ -25,7 +25,7 @@ class CinemaHallFactory extends Factory
     {
         return [
             'chair_rows' => $this->faker->numberBetween(10, 20),
-            'chair_row_seats' => $this->faker->numberBetween(15, 30),
+            'chair_row_seats' => $this->faker->numberBetween(15, 24),
 
         ];
     }

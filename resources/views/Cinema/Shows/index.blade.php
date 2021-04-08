@@ -29,6 +29,7 @@
                                 <td>{{ $hall->start_datetime }}</td>
                                 <td>{{ $hall->end_datetime }}</td>
                                 <td>
+                                    <a class="btn btn-primary" role="button" href="{{ route('shows.edit', $hall->id) }}">Aanpassen</a>
 {{--                                    <form action="{{ route('halls.destroy', $hall->id) }}" method="POST">--}}
 {{--                                        @method('DELETE')--}}
 
