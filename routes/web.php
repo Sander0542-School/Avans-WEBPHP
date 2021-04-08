@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Livewire\Reservation\Event\Index as ReservationEventIndex;
 use App\Http\Livewire\Home\Events as HomeEvents;
@@ -32,4 +33,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::prefix('/downloads')->group(function () {
+        Route::get('', [DownloadController::class, 'index'])->name('downloads.index');
+        Route::get('events', [DownloadController::class, 'events'])->name('downloads.events');
+    });
 });
