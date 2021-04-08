@@ -11,7 +11,7 @@ return [
                 '3' => 'Step 4: Upload pictures',
                 '4' => 'Step 5: Confirm reservation',
                 '5' => 'Reservation made',
-                '6' => 'Something happend',
+                '6' => 'Something happened',
             ]
         ],
         'message' => [
@@ -61,6 +61,56 @@ return [
             ],
             'picture' => [
                 'label' => 'Picture',
+            ],
+        ],
+    ],
+    'restaurant' => [
+        'title' => [
+            'header' => 'Reservations - Restaurant',
+            'step' => [
+                '0' => 'Step 1: Select restaurant',
+                '1' => 'Step 2: Confirm restaurant',
+                '2' => 'Step 3: Select date and time',
+                '3' => 'Step 4: Confirm reservation',
+                '4' => 'Reservation made',
+                '5' => 'Something happened',
+            ]
+        ],
+        'message' => [
+            'could-not-create' => 'Could not create the reservation, please try again.'
+        ],
+        'information' => [
+            'name' => 'Name',
+            'location' => 'Location',
+            'opening-hours' => 'Opening Hours',
+            'seats' => 'Seats',
+            'date' => 'Date',
+            'time' => 'Time',
+        ],
+        'button' => [
+            'select-time' => 'Next: Select Time',
+            'confirm-reservation' => 'Next: Confirm Reservation',
+            'finish' => 'Next: Finish Reservation',
+            'home' => 'Go Home',
+        ],
+        'form' => [
+            'restaurant' => [
+                'label' => 'Restaurant',
+                'option' => [
+                    'default' => 'Choose an restaurant',
+                ]
+            ],
+            'day' => [
+                'label' => 'Date',
+                'option' => [
+                    'default' => 'Choose a date',
+                ]
+            ],
+            'day-part' => [
+                'label' => 'Time',
+                'option' => [
+                    'default' => 'Choose a time',
+                ]
             ],
         ],
     ],

@@ -24,12 +24,12 @@ class RestaurantReservationFactory extends Factory
     public function definition()
     {
         $date = Carbon::make($this->faker->dateTimeBetween('-1 week', '+2 weeks'));
-        $time = $this->faker->dateTimeBetween('today 10:00', 'today 21:00');
-        $date->setTimeFrom($time);
+        $dayPart = $this->faker->numberBetween(20, 42);
 
         return [
             'user_id' => User::inRandomOrder()->first()->id,
-            'start_at' => $date
+            'day' => $date,
+            'day_part' => $dayPart,
         ];
     }
 }

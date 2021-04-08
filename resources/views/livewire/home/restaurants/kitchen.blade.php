@@ -16,6 +16,8 @@
 
                         <h6 class="card-subtitle mb-2 text-muted">@lang('home.restaurants.information.seats')</h6>
                         <p class="card-text">{{ $restaurant->max_seats }}</p>
+
+                        <a href="{{ route('reservation.restaurant', ['restaurantId' => $restaurant->id]) }}" class="btn btn-primary">@lang('home.restaurants.button.make-reservation')</a>
                     </div>
                 </div>
                 <br/>

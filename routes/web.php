@@ -6,6 +6,7 @@ use App\Http\Livewire\Reservation\Event\Index as ReservationEventIndex;
 use App\Http\Livewire\Home\Events as HomeEvents;
 use App\Http\Livewire\Home\Index as HomeIndex;
 use App\Http\Livewire\Home\Restaurants as HomeRestaurants;
+use App\Http\Livewire\Reservation\Restaurant\Index as ReservationRestaurantIndex;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,7 @@ Route::get('restaurants', HomeRestaurants::class)->name('home.restaurants');
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('reservation')->name('reservation.')->group(function () {
         Route::get('event', ReservationEventIndex::class)->name('event');
+        Route::get('restaurant', ReservationRestaurantIndex::class)->name('restaurant');
     });
 
     Route::prefix('/downloads')->group(function () {

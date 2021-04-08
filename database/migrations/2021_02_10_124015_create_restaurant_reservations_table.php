@@ -17,7 +17,8 @@ class CreateRestaurantReservationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('restaurant_id');
             $table->unsignedBigInteger('user_id');
-            $table->dateTime('start_at');
+            $table->date('day');
+            $table->integer('day_part');
             $table->timestamps();
 
             $table->foreign('restaurant_id')->references('id')->on('restaurants');
