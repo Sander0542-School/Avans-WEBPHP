@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
+use Response;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -38,9 +39,24 @@ class AppServiceProvider extends ServiceProvider
             $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
 
             return new LengthAwarePaginator($this->forPage($page, $perPage), $total ?: $this->count(), $perPage, $page, [
-                    'path' => LengthAwarePaginator::resolveCurrentPath(),
-                    'pageName' => $pageName,
-                ]);
+                'path' => LengthAwarePaginator::resolveCurrentPath(),
+                'pageName' => $pageName,
+            ]);
+        });
+
+        /**
+         * Return a CSV file as download
+         *
+         * @param string $content
+         * @return Response
+         */
+        Response::macro('csv', function ($content, $filename = 'download.csv') {
+            $headers = [
+                'Content-type' => 'text/csv',
+                'Content-Disposition' => 'attachment; filename="'.$filename.'"',
+            ];
+
+            return Response::make($content, 200, $headers);
         });
     }
 }
