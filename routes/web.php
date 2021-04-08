@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\DownloadController;
-use App\Http\Controllers\HomeController;
 use App\Http\Livewire\Reservation\Event\Index as ReservationEventIndex;
 use App\Http\Livewire\Home\Events as HomeEvents;
 use App\Http\Livewire\Home\Index as HomeIndex;
@@ -30,12 +31,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('restaurant', ReservationRestaurantIndex::class)->name('restaurant');
     });
 
-    Route::prefix('/downloads')->group(function () {
-        Route::get('', [DownloadController::class, 'index'])->name('downloads.index');
-        Route::get('events', [DownloadController::class, 'events'])->name('downloads.events');
-    });
+    Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
+        Route::get('', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+        Route::resource('events', EventController::class)->except(['show', 'destroy']);
+
+        Route::prefix('/downloads')->group(function () {
+            Route::get('', [DownloadController::class, 'index'])->name('downloads.index');
+            Route::get('events', [DownloadController::class, 'events'])->name('downloads.events');
+        });
+    });
 });
