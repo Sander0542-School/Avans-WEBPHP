@@ -20,7 +20,7 @@
                 <x-jet-nav-link href="{{ route('home.restaurants') }}" :active="request()->routeIs('home.restaurants')">
                     {{ __('layout.navigation.home-restaurants') }}
                 </x-jet-nav-link>
-                @if(Auth::user() != null && Auth::user()->isAdmin == 1)
+                @if(Auth::user() != null && Auth::user()->is_admin == 1)
                     <x-jet-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
                         {{ __('layout.navigation.admin') }}
                     </x-jet-nav-link>
