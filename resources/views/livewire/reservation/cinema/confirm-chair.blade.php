@@ -7,7 +7,8 @@
 
             @if($selectedChairs != [])
                 <h2>Stoelen: <br>
-                    <h5>@foreach($selectedChairs as $chair) Rij: {{$chair['row_id']}}, stoel: {{$chair['seat_id']}}<h5><br>@endforeach</h2>
+                    <h5>@foreach($selectedChairs as $chair) Rij: {{$chair['row_id']}}, stoel: {{$chair['seat_id']}}<h5>
+                            <br>@endforeach</h2>
             @endif
         </div>
     </div>

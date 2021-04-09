@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Cinema;
+namespace App\Http\Livewire\Reservation\Cinema;
 
 use App\Models\Cinema;
 use Livewire\Component;
