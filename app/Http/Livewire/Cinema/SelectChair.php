@@ -43,7 +43,6 @@ class SelectChair extends Component
     {
         $counter = 0;
         if ($this->selectedChairs != []) {
-            //dd($this->selectedChairs);
             foreach ($this->selectedChairs as $selectedChair) {
 
                 $this->rows[$selectedChair["row_id"]][$selectedChair["seat_id"]]['state'] = "free";
