@@ -12,8 +12,8 @@
                 <h5 class="card-title">Film reserveren</h5>
                 <livewire:cinema.select-cinema :cinemaId="$cinemaId"/>
 
-                @if(count($movies) > 0)
-                    <livewire:cinema.select-movie :movies="$movies" :movieId="$movieId"/>
+                @if($cinemaId != null)
+                    <livewire:cinema.select-show :cinemaId="$cinemaId" :showId="$showId"/>
                     @if($selectPeople)
                         <div class="form-group">
                             <label>Aantal personen (tussen 1 en de 6):</label>
