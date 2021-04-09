@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\Encryption;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -54,6 +55,14 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'name' => Encryption::class,
+//        'email' => Encryption::class, // Laravel Jetstream vind dit niet zo leuk
+        'country' => Encryption::class,
+        'state' => Encryption::class,
+        'city' => Encryption::class,
+        'zip_code' => Encryption::class,
+        'street' => Encryption::class,
+        'building_number' => Encryption::class,
     ];
 
     /**

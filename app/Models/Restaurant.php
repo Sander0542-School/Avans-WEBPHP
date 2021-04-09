@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\Encryption;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +12,9 @@ class Restaurant extends Model
 
     protected $casts = [
         'opens_at' => 'datetime',
-        'closes_at' => 'datetime'
+        'closes_at' => 'datetime',
+        'name' => Encryption::class,
+        'location' => Encryption::class,
     ];
 
     protected $fillable = [

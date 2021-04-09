@@ -17,8 +17,8 @@ class CreateRestaurantsTable extends Migration
         {
             $table->id();
             $table->unsignedBigInteger('restaurant_kitchen_id');
-            $table->string('name');
-            $table->string('location');
+            $table->text('name');
+            $table->text('location');
             $table->time('opens_at');
             $table->time('closes_at');
             $table->integer('max_seats');
