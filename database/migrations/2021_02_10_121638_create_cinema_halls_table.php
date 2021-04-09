@@ -18,6 +18,7 @@ class CreateCinemaHallsTable extends Migration
             $table->unsignedBigInteger('cinema_id');
             $table->integer('chair_rows');
             $table->integer('chair_row_seats');
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('cinema_id')->references('id')->on('cinemas');

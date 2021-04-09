@@ -4,15 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CinemaShow extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $casts = [
         'start_datetime' => 'datetime',
         'end_datetime' => 'datetime'
     ];
+
+    protected $fillable = ['movie_id', 'start_datetime', 'end_datetime'];
 
     public function cinema()
     {

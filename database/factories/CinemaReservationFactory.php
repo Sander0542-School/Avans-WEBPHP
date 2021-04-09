@@ -33,7 +33,7 @@ class CinemaReservationFactory extends Factory
     {
 
         return $this->afterCreating(function (CinemaReservation $cinemaReservation) {
-            $cinemaReservation->seats()->saveMany(CinemaReservationSeat::factory(2)->create([
+            $cinemaReservation->seats()->saveMany(CinemaReservationSeat::factory(1)->create([
                 'cinema_reservation_id' => $cinemaReservation->id,
             ]));
         });
