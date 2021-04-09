@@ -1,6 +1,6 @@
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        @lang('reservation.event.index.title.events')
+        Film reserveren
     </h2>
 </x-slot>
 
@@ -9,7 +9,7 @@
     @if($step == 1)
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">@lang('reservation.event.index.title.select')</h5>
+                <h5 class="card-title">Film reserveren</h5>
                 <livewire:cinema.select-cinema :cinemaId="$cinemaId"/>
 
                 @if(count($movies) > 0)

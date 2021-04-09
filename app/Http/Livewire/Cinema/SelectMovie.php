@@ -6,6 +6,7 @@ use App\Models\Cinema;
 use App\Models\CinemaHall;
 use App\Models\CinemaMovie;
 use App\Models\CinemaShow;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class SelectMovie extends Component
@@ -51,6 +52,6 @@ class SelectMovie extends Component
     public function cinemaChanged(Cinema $cinema)
     {
 
-        $this->movies = $cinema->shows()->get();
+        $this->movies = $cinema->shows()->where('start_datetime', '>', now())->get();
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Cinema;
 use App\Models\Cinema;
 use App\Models\CinemaMovie;
 use App\Models\CinemaShow;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class Index extends Component
@@ -59,8 +60,7 @@ class Index extends Component
         $this->clearMovie();
         $this->cinema = $cinema;
         $this->cinemaId = $cinema->id;
-        $this->movies = $cinema->shows()->get();
-
+        $this->movies = $cinema->shows()->where('start_datetime', '>', now())->get();
     }
 
     public function clearMovie()
