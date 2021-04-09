@@ -10,7 +10,7 @@
             <h2>Bioscopen</h2>
             <div class="card">
                 <div class="card-body">
-                    <a class="btn btn-primary py-3" role="button" href="{{ route('cinemas.create') }}">Bioscoop toevoegen</a>
+                    <a class="btn btn-primary py-3" role="button" href="{{ route('admin.cinemas.create') }}">Bioscoop toevoegen</a>
                     <table class="table table-bordered mb-5">
                         <thead>
                         <tr class="table-success">
@@ -26,9 +26,9 @@
                                 <th scope="row">{{ $cinema->id }}</th>
                                 <td>{{ $cinema->name }}</td>
                                 <td>{{ $cinema->location }}</td>
-                                <td><a class="btn btn-primary" role="button" href="{{ route('cinemas.halls.index', $cinema->id) }}">Zalen</a>
-                                    <a class="btn btn-primary" role="button" href="{{ route('cinemas.edit', $cinema->id) }}">Aanpassen</a>
-                                    <form action="{{ route('cinemas.destroy', $cinema->id) }}" method="POST">
+                                <td><a class="btn btn-primary" role="button" href="{{ route('admin.cinemas.halls.index', $cinema->id) }}">Zalen</a>
+                                    <a class="btn btn-primary" role="button" href="{{ route('admin.cinemas.edit', $cinema->id) }}">Aanpassen</a>
+                                    <form action="{{ route('admin.cinemas.destroy', $cinema->id) }}" method="POST">
                                         @method('DELETE')
 
                                         @csrf

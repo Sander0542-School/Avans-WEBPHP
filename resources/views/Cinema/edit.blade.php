@@ -21,7 +21,7 @@
             <h2>Bioscoop updaten</h2>
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('cinemas.update', $cinema->id) }}" >
+                    <form method="POST" action="{{ route('admin.cinemas.update', $cinema->id) }}" >
                         @method('PUT')
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                         <div class="form-group">

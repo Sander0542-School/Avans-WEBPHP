@@ -25,7 +25,7 @@ class CinemaFactory extends Factory
     {
         return [
             'name' => $this->faker->company,
-            'location' => $this->faker->streetAddress,
+            'location' => $this->faker->city,
 
         ];
     }
@@ -33,7 +33,7 @@ class CinemaFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (Cinema $cinema) {
-            $cinema->halls()->saveMany(CinemaHall::factory(2)->create([
+            $cinema->halls()->saveMany(CinemaHall::factory($this->faker->numberBetween(2,4))->create([
                 'cinema_id' => $cinema->id,
             ]));
         });

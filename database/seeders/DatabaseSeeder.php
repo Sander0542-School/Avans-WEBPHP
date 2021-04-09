@@ -31,14 +31,14 @@ class DatabaseSeeder extends Seeder
             'is_admin' => 1,
         ]);
 
-        User::factory(10)->create();
+        User::factory(50)->create();
 
-        CinemaMovie::factory(50)->create();
+        CinemaMovie::factory(25)->create();
 
-        Cinema::factory(5)->create();
+        Cinema::factory(15)->create();
 
-        Event::factory(20)->create();
+        Event::factory(200)->create();
 
-        RestaurantKitchen::factory(10)->create();
+        RestaurantKitchen::factory(15)->create();
     }
 }

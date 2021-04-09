@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\RestaurantCrowdingController;
 use App\Http\Controllers\CinemaController;
 use App\Http\Controllers\HallController;
 use App\Http\Controllers\MovieController;
@@ -36,22 +37,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('cinema', ReservationCinemaIndex::class)->name('cinema');
         Route::get('event', ReservationEventIndex::class)->name('event');
         Route::get('restaurant', ReservationRestaurantIndex::class)->name('restaurant');
+        Route::get('cinema/confirm/{id}', [CinemaController::class, 'confirm'])->name('cinema.confirm');
     });
-
-    Route::resource('cinemas', CinemaController::class);
-    Route::resource('cinemas.halls', HallController::class)->shallow();
-    Route::resource('halls.shows', ShowController::class)->shallow();
-    Route::resource('movies', MovieController::class)->shallow();
-
-    Route::get('/home', HomeIndex::class)->name('home');
-    Route::get('/events', HomeEvents::class)->name('home.events');
-    Route::get('/restaurants', HomeRestaurants::class)->name('home.restaurants');
-
-    Route::get('/cinema/reservation/confirm/{id}', [CinemaController::class, 'confirm'])->name('confirm.cinema');
-
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
 
     Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('', [DashboardController::class, 'index'])->name('dashboard');
@@ -59,9 +46,18 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::resource('events', EventController::class)->except(['show', 'destroy']);
         Route::resource('restaurants', RestaurantController::class)->except(['show', 'destroy']);
 
-        Route::prefix('/downloads')->group(function () {
-            Route::get('', [DownloadController::class, 'index'])->name('downloads.index');
-            Route::get('events', [DownloadController::class, 'events'])->name('downloads.events');
+        Route::resource('cinemas', CinemaController::class);
+        Route::resource('cinemas.halls', HallController::class)->shallow();
+        Route::resource('halls.shows', ShowController::class)->shallow();
+        Route::resource('movies', MovieController::class)->shallow();
+
+        Route::prefix('restaurants/crowding')->name('restaurants.crowding.')->group(function () {
+            Route::get('', [RestaurantCrowdingController::class, 'index'])->name('index');
+        });
+
+        Route::prefix('downloads')->name('downloads.')->group(function () {
+            Route::get('', [DownloadController::class, 'index'])->name('index');
+            Route::get('events', [DownloadController::class, 'events'])->name('events');
         });
     });
 });

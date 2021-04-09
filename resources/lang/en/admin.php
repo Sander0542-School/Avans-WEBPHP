@@ -22,6 +22,10 @@ return [
                 'title' => 'Downloads',
                 'button' => 'Download stats',
             ],
+            'restaurants-crowding' => [
+                'title' => 'Restaurant Crowding',
+                'button' => 'View stats',
+            ],
         ],
     ],
     'downloads' => [
@@ -117,5 +121,21 @@ return [
             'create' => 'Create Restaurant',
             'save' => 'Save Restaurant',
         ],
+        'crowding' => [
+            'title' => [
+                'index' => 'Restaurant Crowding'
+            ],
+            'information' => [
+                'name' => 'Name',
+                'seats' => 'Seats',
+                'reservations' => 'Reservations',
+                'state' => 'State',
+            ],
+            'state' => [
+                'quiet' => 'Quiet',
+                'crowded' => 'Crowded',
+                'busy' => 'Busy',
+            ]
+        ]
     ],
 ];

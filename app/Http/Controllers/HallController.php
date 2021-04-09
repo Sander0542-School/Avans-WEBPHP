@@ -48,7 +48,7 @@ class HallController extends Controller
         $cinema = Cinema::findOrFail($request->input('cinema'));
         $cinema->halls()->save($hall);
 
-        return redirect()->route('cinemas.halls.index', $cinema->id);
+        return redirect()->route('admin.cinemas.halls.index', $cinema->id);
     }
 
     /**
@@ -97,6 +97,6 @@ class HallController extends Controller
     {
         $hall = CinemaHall::findOrFail($id);
         $hall->delete();
-        return redirect()->route('cinemas.halls.index', $hall->cinema_id);
+        return redirect()->route('admin.cinemas.halls.index', $hall->cinema_id);
     }
 }

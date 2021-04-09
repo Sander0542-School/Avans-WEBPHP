@@ -86,7 +86,7 @@ class SelectChair extends Component
         $reservation->save();
         $reservation->seats()->createMany($this->selectedChairs);
 
-        return redirect()->route('confirm.cinema', $reservation->id);
+        return redirect()->route('reservation.cinema.confirm', $reservation->id);
     }
 
     public function setReservations(): void

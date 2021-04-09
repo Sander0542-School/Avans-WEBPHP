@@ -23,7 +23,7 @@ class RestaurantReservationFactory extends Factory
      */
     public function definition()
     {
-        $date = Carbon::make($this->faker->dateTimeBetween('-1 week', '+2 weeks'));
+        $date = Carbon::make($this->faker->dateTimeBetween('-1 week', '+1 weeks'));
         $dayPart = $this->faker->numberBetween(20, 42);
 
         return [
