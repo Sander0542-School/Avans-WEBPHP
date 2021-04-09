@@ -34,7 +34,23 @@ return [
                         'movies' => 'Movies',
                     ],
                 ],
+                'location' => [
+                    'title' => 'Location',
+                    'option' => [
+                        'default' => 'Any location',
+                    ],
+                ],
+                'date' => [
+                    'title' => 'Date',
+                    'label' => [
+                        'start' => 'Start',
+                        'end' => 'End',
+                    ],
+                ],
             ],
+            'messages' => [
+                'no-events' => 'There are no events matching the search.'
+            ]
         ],
     ],
     'restaurants' => [

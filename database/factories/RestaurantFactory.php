@@ -25,7 +25,7 @@ class RestaurantFactory extends Factory
     {
         return [
             'name' => $this->faker->company,
-            'location' => $this->faker->streetAddress,
+            'location' => $this->faker->city,
             'opens_at' => $this->faker->dateTimeBetween('today 08:00', 'today 10:00')->format('H:i:s'),
             'closes_at' => $this->faker->dateTimeBetween('today 21:00', 'today 23:00')->format('H:i:s'),
             'max_seats' => $this->faker->numberBetween(20, 80),
@@ -35,7 +35,7 @@ class RestaurantFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (Restaurant $restaurant) {
-            $restaurant->reservations()->saveMany(RestaurantReservation::factory($this->faker->numberBetween(30, 80))
+            $restaurant->reservations()->saveMany(RestaurantReservation::factory($this->faker->numberBetween(500, 700))
                 ->create([
                     'restaurant_id' => $restaurant->id
                 ]));

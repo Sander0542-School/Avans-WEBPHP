@@ -32,9 +32,8 @@ class CinemaHallFactory extends Factory
 
     public function configure()
     {
-
         return $this->afterCreating(function (CinemaHall $cinemaHall) {
-            $cinemaHall->shows()->saveMany(CinemaShow::factory(2)->create([
+            $cinemaHall->shows()->saveMany(CinemaShow::factory($this->faker->numberBetween(3,8))->create([
                 'cinema_hall_id' => $cinemaHall->id,
             ]));
         });

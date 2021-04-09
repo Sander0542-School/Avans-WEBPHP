@@ -15,7 +15,7 @@ class CreateRestaurantKitchensTable extends Migration
     {
         Schema::create('restaurant_kitchens', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->text('name');
         });
     }
 

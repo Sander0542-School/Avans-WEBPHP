@@ -29,7 +29,7 @@ class EventFactory extends Factory
 
         return [
             'name' => $this->faker->words($this->faker->numberBetween(1, 3), true),
-            'location' => $this->faker->streetAddress,
+            'location' => $this->faker->city,
             'start_datetime' => $startDate,
             'end_datetime' => $endDate,
             'max_tickets' => $this->faker->numberBetween(2, 6),

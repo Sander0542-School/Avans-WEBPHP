@@ -22,7 +22,7 @@ class CinemaMovieFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->name(),
+            'title' => $this->faker->movie().' ('.$this->faker->numberBetween(1950, 2021).')',
         ];
     }
 }

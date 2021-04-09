@@ -17,12 +17,12 @@ class AddPersonalDataToUser extends Migration
         {
             $table->after('password', function ($table)
             {
-                $table->string('country');
-                $table->string('state');
-                $table->string('city');
-                $table->string('zip_code');
-                $table->string('street');
-                $table->string('building_number');
+                $table->text('country');
+                $table->text('state');
+                $table->text('city');
+                $table->text('zip_code');
+                $table->text('street');
+                $table->text('building_number');
             });
         });
     }
