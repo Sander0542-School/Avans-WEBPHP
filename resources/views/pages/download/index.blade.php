@@ -11,8 +11,8 @@
             <div class="card">
                 <div class="card-body">
                     <p>{{ __('admin.downloads.events.message.info') }}</p>
-                    <a href="{{ route('admin.downloads.events', ['type' => 'json']) }}" class="btn btn-primary">{{ __('downloads.events.button.json') }}</a>
-                    <a href="{{ route('admin.downloads.events', ['type' => 'csv']) }}" class="btn btn-primary">{{ __('downloads.events.button.cvs') }}</a>
+                    <a href="{{ route('admin.downloads.events', ['type' => 'json']) }}" class="btn btn-primary">{{ __('admin.downloads.events.button.json') }}</a>
+                    <a href="{{ route('admin.downloads.events', ['type' => 'csv']) }}" class="btn btn-primary">{{ __('admin.downloads.events.button.cvs') }}</a>
                 </div>
             </div>
         </div>
