@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Response;
 
@@ -58,5 +60,8 @@ class AppServiceProvider extends ServiceProvider
 
             return Response::make($content, 200, $headers);
         });
+
+        Paginator::useBootstrap();
+        Schema::defaultStringLength(191);
     }
 }

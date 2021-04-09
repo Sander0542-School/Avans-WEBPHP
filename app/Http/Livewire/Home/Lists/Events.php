@@ -72,7 +72,7 @@ class Events extends Component
                 'duration' => $show->start_datetime->format('d F H:i').' - '.$show->end_datetime->format('H:i'),
                 'start' => $show->start_datetime->unix(),
                 'end' => $show->end_datetime->unix(),
-                'reservation_url' => route('home') //route('reservation.cinema', ['showId' => $show->id])
+                'reservation_url' => route('home.cinemas')
             ];
         });
     }
