@@ -41,8 +41,9 @@ class Events extends Component
         $locations = collect();
         $locations = $locations->concat(Event::all('location')->pluck('location'));
         $locations = $locations->concat(Cinema::all('location')->pluck('location'));
+        $locations = $locations->sort();
 
-        $this->locations = $locations->toArray();
+        $this->locations = $locations->values()->all();
 
         $this->dateStart = now()->format('Y-m-d');
         $this->dateEnd = now()->addWeeks(10)->format('Y-m-d');
