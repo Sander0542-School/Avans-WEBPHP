@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
 
         Cinema::factory(15)->create();
 
-        Event::factory(200)->create();
+        Event::factory(100)->create();
 
         RestaurantKitchen::factory(15)->create();
     }
