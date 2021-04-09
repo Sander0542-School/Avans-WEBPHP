@@ -17,14 +17,18 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property string $location
+ * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CinemaHall[] $halls
  * @property-read int|null $halls_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CinemaShow[] $shows
+ * @property-read int|null $shows_count
  * @method static \Illuminate\Database\Eloquent\Builder|Cinema newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Cinema newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Cinema query()
  * @method static \Illuminate\Database\Eloquent\Builder|Cinema whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cinema whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Cinema whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Cinema whereLocation($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Cinema whereName($value)
@@ -41,6 +45,7 @@ namespace App\Models{
  * @property int $cinema_id
  * @property int $chair_rows
  * @property int $chair_row_seats
+ * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Cinema|null $cinema
@@ -53,10 +58,32 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CinemaHall whereChairRows($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CinemaHall whereCinemaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CinemaHall whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CinemaHall whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CinemaHall whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CinemaHall whereUpdatedAt($value)
  */
 	class CinemaHall extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\CinemaMovie
+ *
+ * @property int $id
+ * @property string $title
+ * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|CinemaMovie newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CinemaMovie newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CinemaMovie query()
+ * @method static \Illuminate\Database\Eloquent\Builder|CinemaMovie whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CinemaMovie whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CinemaMovie whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CinemaMovie whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CinemaMovie whereUpdatedAt($value)
+ */
+	class CinemaMovie extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -109,12 +136,15 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $cinema_hall_id
- * @property string $title
- * @property string $start_datetime
- * @property string $end_datetime
+ * @property int $movie_id
+ * @property \Illuminate\Support\Carbon $start_datetime
+ * @property \Illuminate\Support\Carbon $end_datetime
+ * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Cinema|null $cinema
  * @property-read \App\Models\CinemaHall|null $hall
+ * @property-read \App\Models\CinemaMovie|null $movie
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CinemaReservation[] $reservations
  * @property-read int|null $reservations_count
  * @method static \Illuminate\Database\Eloquent\Builder|CinemaShow newModelQuery()
@@ -122,10 +152,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CinemaShow query()
  * @method static \Illuminate\Database\Eloquent\Builder|CinemaShow whereCinemaHallId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CinemaShow whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CinemaShow whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CinemaShow whereEndDatetime($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CinemaShow whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CinemaShow whereMovieId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CinemaShow whereStartDatetime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CinemaShow whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CinemaShow whereUpdatedAt($value)
  */
 	class CinemaShow extends \Eloquent {}
@@ -143,6 +174,7 @@ namespace App\Models{
  * @property int $max_tickets
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $days
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\EventReservation[] $reservations
  * @property-read int|null $reservations_count
  * @method static \Illuminate\Database\Eloquent\Builder|Event newModelQuery()
@@ -168,11 +200,13 @@ namespace App\Models{
  * @property int $event_id
  * @property int $user_id
  * @property int $ticket_count
+ * @property string $picture
  * @property \Illuminate\Support\Carbon $start_date
  * @property \Illuminate\Support\Carbon $end_date
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read EventReservation|null $event
+ * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|EventReservation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|EventReservation newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|EventReservation query()
@@ -180,6 +214,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|EventReservation whereEndDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EventReservation whereEventId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EventReservation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EventReservation wherePicture($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EventReservation whereStartDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EventReservation whereTicketCount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EventReservation whereUpdatedAt($value)
@@ -244,7 +279,7 @@ namespace App\Models{
  * @property int $id
  * @property int $restaurant_id
  * @property int $user_id
- * @property \Illuminate\Support\Carbon $start_at
+ * @property string $start_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Restaurant|null $restaurant

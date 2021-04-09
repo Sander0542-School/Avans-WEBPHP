@@ -40,6 +40,54 @@
                     <x-jet-input class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
                 </div>
 
+                <div class="form-group">
+                    <x-jet-label value="{{ __('Country') }}" />
+
+                    <x-jet-input class="{{ $errors->has('country') ? 'is-invalid' : '' }}" type="country" name="text"
+                                 :value="old('country')" required />
+                    <x-jet-input-error for="country"></x-jet-input-error>
+                </div>
+
+                <div class="form-group">
+                    <x-jet-label value="{{ __('State') }}" />
+
+                    <x-jet-input class="{{ $errors->has('state') ? 'is-invalid' : '' }}" type="state" name="text"
+                                 :value="old('state')" required />
+                    <x-jet-input-error for="state"></x-jet-input-error>
+                </div>
+
+                <div class="form-group">
+                    <x-jet-label value="{{ __('City') }}" />
+
+                    <x-jet-input class="{{ $errors->has('city') ? 'is-invalid' : '' }}" type="city" name="text"
+                                 :value="old('city')" required />
+                    <x-jet-input-error for="city"></x-jet-input-error>
+                </div>
+
+                <div class="form-group">
+                    <x-jet-label value="{{ __('Zip Code') }}" />
+
+                    <x-jet-input class="{{ $errors->has('zip_code') ? 'is-invalid' : '' }}" type="zip_code" name="text"
+                                 :value="old('zip_code')" required />
+                    <x-jet-input-error for="zip_code"></x-jet-input-error>
+                </div>
+
+                <div class="form-group">
+                    <x-jet-label value="{{ __('Street') }}" />
+
+                    <x-jet-input class="{{ $errors->has('street') ? 'is-invalid' : '' }}" type="street" name="text"
+                                 :value="old('street')" required />
+                    <x-jet-input-error for="street"></x-jet-input-error>
+                </div>
+
+                <div class="form-group">
+                    <x-jet-label value="{{ __('Bulding Number') }}" />
+
+                    <x-jet-input class="{{ $errors->has('building_number') ? 'is-invalid' : '' }}" type="building_number" name="text"
+                                 :value="old('building_number')" required />
+                    <x-jet-input-error for="building_number"></x-jet-input-error>
+                </div>
+
                 @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">

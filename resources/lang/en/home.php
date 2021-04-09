@@ -42,6 +42,12 @@ return [
             'location' => 'Location',
             'opening-hours' => 'Opening hours',
             'seats' => 'Seats',
+        ],
+        'button' => [
+            'make-reservation' => 'Make reservation'
         ]
-    ]
+    ],
+    'button' => [
+        'go' => 'Go Home',
+    ],
 ];

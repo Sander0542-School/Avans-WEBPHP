@@ -6,6 +6,6 @@ return [
         'home-events' => 'Events',
         'home-restaurants' => 'Restaurants',
         'home-cinemas' => 'Cinemas',
-        'downloads' => 'Downloads',
+        'admin' => 'Admin',
     ]
 ];

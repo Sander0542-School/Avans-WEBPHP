@@ -15,6 +15,14 @@ class Event extends Model
         'end_datetime' => 'datetime'
     ];
 
+    protected $fillable = [
+        'name',
+        'location',
+        'start_datetime',
+        'end_datetime',
+        'max_tickets',
+    ];
+
     /**
      * Get the reservations for the event.
      */

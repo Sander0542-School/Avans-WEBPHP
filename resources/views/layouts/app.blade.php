@@ -32,7 +32,11 @@
         @endif
 
         <!-- Page Content -->
-        <main id="Main" class="container my-5">
+        <main class="container my-5">
+            @if(session()->has('message'))
+                <x-alert message="{{ session()->get('message') }}"/>
+            @endif
+
             {{ $slot }}
         </main>
 

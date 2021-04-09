@@ -16457,3 +16457,7 @@ readers do not read off random characters that represent icons */
 .pagination {
   justify-content: center;
 }
+
+.c-pointer {
+  cursor: pointer;
+}
