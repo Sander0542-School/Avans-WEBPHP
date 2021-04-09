@@ -76,4 +76,46 @@ return [
             'save' => 'Save Event',
         ],
     ],
+    'restaurants' => [
+        'title' => [
+            'index' => 'Restaurants',
+            'create' => 'Create Restaurant',
+            'edit' => 'Edit Restaurant',
+        ],
+        'information' => [
+            'id' => 'Id',
+            'name' => 'Name',
+            'location' => 'Location',
+            'kitchen' => 'Kitchen',
+            'opening-hours' => 'Opening Hours',
+            'seats' => 'Seats',
+        ],
+        'form' => [
+            'name' => [
+                'label' => 'Name',
+            ],
+            'kitchen' => [
+                'label' => 'Location',
+                'option' => [
+                    'default' => 'Choose a kitchen'
+                ]
+            ],
+            'location' => [
+                'label' => 'Location',
+            ],
+            'opens' => [
+                'label' => 'Opens at',
+            ],
+            'closes' => [
+                'label' => 'Closes at',
+            ],
+            'seats' => [
+                'label' => 'Seats',
+            ],
+        ],
+        'button' => [
+            'create' => 'Create Restaurant',
+            'save' => 'Save Restaurant',
+        ],
+    ],
 ];

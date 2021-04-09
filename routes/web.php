@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Livewire\Reservation\Event\Index as ReservationEventIndex;
 use App\Http\Livewire\Home\Events as HomeEvents;
@@ -35,6 +36,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::resource('events', EventController::class)->except(['show', 'destroy']);
+        Route::resource('restaurants', RestaurantController::class)->except(['show', 'destroy']);
 
         Route::prefix('/downloads')->group(function () {
             Route::get('', [DownloadController::class, 'index'])->name('downloads.index');
