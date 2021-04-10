@@ -8,7 +8,7 @@
     <div class="card">
         <div class="card-body">
             <div>
-                <a class="btn btn-primary" href="{{ route('admin.events.create') }}">{{ __('admin.events.button.create') }}</a>
+                <a id="createEvent" class="btn btn-primary" href="{{ route('admin.events.create') }}">{{ __('admin.events.button.create') }}</a>
                 <br/><br/>
             </div>
             <table class="table table-striped">
