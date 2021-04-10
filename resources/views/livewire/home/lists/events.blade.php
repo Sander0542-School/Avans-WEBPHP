@@ -27,6 +27,36 @@
                 </div>
             </div>
         </div>
+        <br/>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ __('home.lists.events.section.location.title') }}</h5>
+                <div class="form-group">
+                    <select wire:model="location" class="form-control" id="inputLocation">
+                        <option value="">{{ __('home.lists.events.section.location.option.default') }}</option>
+                        @foreach($locations as $location)
+                            <option value="{{ $location }}">{{ $location }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ __('home.lists.events.section.date.title') }}</h5>
+
+                <div class="form-group">
+                    <label for="inputStart">{{ __('home.lists.events.section.date.label.start') }}</label>
+                    <input wire:model="dateStart" type="date" class="form-control" id="inputStart">
+                </div>
+
+                <div class="form-group">
+                    <label for="input_end">{{ __('home.lists.events.section.date.label.end') }}</label>
+                    <input wire:model="dateEnd" type="date" class="form-control" id="inputEnd">
+                </div>
+            </div>
+        </div>
     </div>
     <div class="col-9">
         <div class="card">
@@ -43,15 +73,21 @@
                     </thead>
                     <tbody>
 
-                    @foreach($events as $event)
-                        <tr class="c-pointer" onclick="window.location.href = this.dataset.href" data-href="{{ $event['reservation_url'] }}">
-                            <td><i class="fas fa-{{ $event['icon'] }}"></i></td>
-                            <td>{{ $event['name'] }}</td>
-                            <td>{{ $event['location'] }}</td>
-                            <td>{{ $event['duration'] }}</td>
-                            <td></td>
+                    @if($events->count() > 0)
+                        @foreach($events as $event)
+                            <tr class="c-pointer" onclick="window.location.href = this.dataset.href" data-href="{{ $event['reservation_url'] }}">
+                                <td><i class="fas fa-{{ $event['icon'] }}"></i></td>
+                                <td>{{ $event['name'] }}</td>
+                                <td>{{ $event['location'] }}</td>
+                                <td>{{ $event['duration'] }}</td>
+                                <td></td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td class="text-center" colspan="5">{{ __('home.lists.events.messages.no-events') }}</td>
                         </tr>
-                    @endforeach
+                    @endif
                     </tbody>
                 </table>
                 {{ $events->links() }}

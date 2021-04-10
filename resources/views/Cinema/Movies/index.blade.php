@@ -10,7 +10,7 @@
             <h2>Films</h2>
             <div class="card">
                 <div class="card-body">
-                    <a class="btn btn-primary py-3" role="button" href="{{ route('movies.create') }}">Film toevoegen</a>
+                    <a class="btn btn-primary py-3" role="button" href="{{ route('admin.movies.create') }}">Film toevoegen</a>
                     <table class="table table-bordered mb-5">
                         <thead>
                         <tr class="table-success">
@@ -24,7 +24,7 @@
                             <tr>
                                 <th scope="row">{{ $movie->id }}</th>
                                 <td>{{ $movie->title }}</td>
-                                <td><a class="btn btn-primary" role="button" href="{{ route('movies.edit', $movie->id) }}">Aanpassen</a>
+                                <td><a class="btn btn-primary" role="button" href="{{ route('admin.movies.edit', $movie->id) }}">Aanpassen</a>
                                 </td>
                             </tr>
                         @endforeach

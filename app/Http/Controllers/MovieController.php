@@ -46,7 +46,7 @@ class MovieController extends Controller
 
         $movie->save();
 
-        return redirect()->route('movies.index')->with('message', 'success:Film succesvol toegevoegd');
+        return redirect()->route('admin.movies.index')->with('message', 'success:Film succesvol toegevoegd');
     }
 
     /**
@@ -90,7 +90,7 @@ class MovieController extends Controller
         $movie->title = $request->input('title');
         $movie->save();
 
-        return redirect()->route('movies.index');
+        return redirect()->route('admin.movies.index');
 
     }
 
@@ -104,6 +104,6 @@ class MovieController extends Controller
     {
         $movie = CinemaMovie::findOrFail($id);
         $movie->delete();
-        return redirect()->route('movies.index');
+        return redirect()->route('admin.movies.index');
     }
 }

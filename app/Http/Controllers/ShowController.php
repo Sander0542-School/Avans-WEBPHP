@@ -55,7 +55,7 @@ class ShowController extends Controller
         $hall->shows()->save($show);
 
 
-        return redirect()->route('halls.shows.index', $hall->id);
+        return redirect()->route('admin.halls.shows.index', $hall->id);
     }
 
     /**
@@ -117,7 +117,7 @@ class ShowController extends Controller
         $show->save();
 
 
-        return redirect()->route('halls.shows.index', $show->cinema_hall_id);
+        return redirect()->route('admin.halls.shows.index', $show->cinema_hall_id);
     }
 
     /**

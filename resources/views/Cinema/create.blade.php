@@ -21,7 +21,7 @@
             <h2>Bioscoop toevoegen</h2>
             <div class="card">
                 <div class="card-body">
-                    <form  method="post" action="{{ url('cinemas') }}" accept-charset="UTF-8">
+                    <form  method="post" action="{{ route('admin.cinemas.store') }}" accept-charset="UTF-8">
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                         <div class="form-group">
                             <label for="InputCinemaName">Naam:</label>

@@ -10,7 +10,7 @@
             <h2>Bioscopen</h2>
             <div class="card">
                 <div class="card-body">
-                    <a class="btn btn-primary py-3" role="button" href="{{ route('halls.shows.create', $hall->id) }}">Film inplannen</a>
+                    <a class="btn btn-primary py-3" role="button" href="{{ route('admin.halls.shows.create', $hall->id) }}">Film inplannen</a>
                     <table class="table table-bordered mb-5">
                         <thead>
                         <tr class="table-success">
@@ -29,7 +29,7 @@
                                 <td>{{ $hall->start_datetime }}</td>
                                 <td>{{ $hall->end_datetime }}</td>
                                 <td>
-                                    <a class="btn btn-primary" role="button" href="{{ route('shows.edit', $hall->id) }}">Aanpassen</a>
+                                    <a class="btn btn-primary" role="button" href="{{ route('admin.shows.edit', $hall->id) }}">Aanpassen</a>
 {{--                                    <form action="{{ route('halls.destroy', $hall->id) }}" method="POST">--}}
 {{--                                        @method('DELETE')--}}
 

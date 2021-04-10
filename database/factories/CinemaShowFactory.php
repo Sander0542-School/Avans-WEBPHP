@@ -24,7 +24,7 @@ class CinemaShowFactory extends Factory
      */
     public function definition()
     {
-        $startDate = Carbon::make($this->faker->dateTimeBetween('-3 months', '+3 months'));
+        $startDate = Carbon::make($this->faker->dateTimeBetween('-1 week', '+2 weeks'));
         $endDate = Carbon::make($this->faker->dateTimeBetween($startDate->clone()->addMinutes(60), $startDate->clone()->addMinutes(180)));
 
         return [
@@ -38,7 +38,7 @@ class CinemaShowFactory extends Factory
     {
 
         return $this->afterCreating(function (CinemaShow $cinemaShow) {
-            $cinemaShow->reservations()->saveMany(CinemaReservation::factory(2)->create([
+            $cinemaShow->reservations()->saveMany(CinemaReservation::factory($this->faker->numberBetween(2,5))->create([
                 'cinema_show_id' => $cinemaShow->id,
             ]));
         });

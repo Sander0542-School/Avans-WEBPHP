@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "content-hash": "d8ef5167b2ac86f1299a46f09f7e05ee",
+
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2486,6 +2487,54 @@
                 }
             ],
             "time": "2020-07-20T17:29:33+00:00"
+        },
+        {
+            "name": "pointplus/faker-cinema-providers",
+            "version": "v1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PointPlusYt/FakerCinemaProviders.git",
+                "reference": "0189c3317d04ad3339f5268bb26c0fef626c239a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PointPlusYt/FakerCinemaProviders/zipball/0189c3317d04ad3339f5268bb26c0fef626c239a",
+                "reference": "0189c3317d04ad3339f5268bb26c0fef626c239a",
+                "shasum": ""
+            },
+            "require": {
+                "fakerphp/faker": "~1",
+                "php": "^5.3.3 || ^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*",
+                "squizlabs/php_codesniffer": "^2.9.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PointPlus\\FakerCinema\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Julien RAVIA",
+                    "email": "julien.ravia@gmail.com"
+                },
+                {
+                    "name": "Djyp Forest Fortin",
+                    "email": "point@plus.yt"
+                }
+            ],
+            "description": "Generate random movie & shows datas using fakerphp/Faker (based on real names & datas), this project is forked from xylis/faker-cinema-providers",
+            "support": {
+                "source": "https://github.com/PointPlusYt/FakerCinemaProviders/tree/v1.2"
+            },
+            "time": "2021-04-03T08:53:00+00:00"
         },
         {
             "name": "pragmarx/google2fa",
@@ -9623,5 +9672,8 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
+    "platform-overrides": {
+        "php": "7.4.16"
+    },
     "plugin-api-version": "2.0.0"
 }

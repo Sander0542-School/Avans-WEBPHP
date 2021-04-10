@@ -21,7 +21,7 @@
             <h2>Bioscoop zaal toevoegen</h2>
             <div class="card">
                 <div class="card-body">
-                    <form  method="post" action="{{ route('cinemas.halls.store', $cinemaId) }}" accept-charset="UTF-8">
+                    <form  method="post" action="{{ route('admin.cinemas.halls.store', $cinemaId) }}" accept-charset="UTF-8">
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                         <input name="cinema" type="hidden" value="{{ $cinemaId}}"/>
                         <div class="form-group">

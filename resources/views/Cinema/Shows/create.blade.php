@@ -21,7 +21,7 @@
             <h2>Film toevoegen voor zaal {{$hall->id}}</h2>
             <div class="card">
                 <div class="card-body">
-                    <form  method="post" action="{{ route('halls.shows.store', $hall->id) }}" accept-charset="UTF-8">
+                    <form  method="post" action="{{ route('admin.halls.shows.store', $hall->id) }}" accept-charset="UTF-8">
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                         <input name="cinema_hall_id" type="hidden" value="{{ $hall->id }}"/>
 

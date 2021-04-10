@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Rules\MaxShowsPerDay;
+use App\Rules\ShowPlayingSameHall;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreShowRequest extends FormRequest
@@ -25,7 +26,7 @@ class StoreShowRequest extends FormRequest
     public function rules()
     {
         return [
-            'cinema_hall_id' => ['required','exists:cinema_halls,id', new MaxShowsPerDay(request()->start_datetime)],
+            'cinema_hall_id' => ['required','exists:cinema_halls,id', new MaxShowsPerDay(request()->start_datetime), new ShowPlayingSameHall(request()->start_datetime, request()->end_datetime)],
             'movie_id' => 'required|exists:cinema_movies,id',
             'start_datetime' => 'required|date|before:end_datetime',
             'end_datetime' => 'required|date|after:start_date'

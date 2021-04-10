@@ -21,7 +21,7 @@
             <h2>Film aanpassen voor zaal {{$show->cinema_hall_id}}</h2>
             <div class="card">
                 <div class="card-body">
-                    <form  method="post" action="{{ route('shows.update', $show->id) }}" accept-charset="UTF-8">
+                    <form  method="post" action="{{ route('admin.shows.update', $show->id) }}" accept-charset="UTF-8">
                         @method('PUT')
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                         <input name="cinema_hall_id" type="hidden" value="{{ $show->cinema_hall_id }}"/>

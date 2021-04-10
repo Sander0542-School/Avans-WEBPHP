@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ __('reservation.event.title.step.0') }}</h5>
-                <livewire:reservation.event.selector/>
+                <livewire:reservation.event.selector :eventId="$eventId"/>
             </div>
         </div>
         <br/>

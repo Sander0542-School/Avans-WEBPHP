@@ -1,28 +1,30 @@
 <?php
 
-namespace App\Http\Livewire\Cinema;
+namespace App\Http\Livewire\Reservation\Cinema;
 
 use App\Models\Cinema;
-use App\Models\CinemaMovie;
 use App\Models\CinemaShow;
-use Carbon\Carbon;
 use Livewire\Component;
 
 class Index extends Component
 {
+    protected $queryString = [
+        'showId'
+    ];
+
     protected $listeners = [
         'cinemaChanged' => 'cinemaChanged',
         'decrementStep' => 'decrementStep',
         'refresh' => 'refresh',
         'cinemaDeselected' => 'clearCinema',
-        'movieChanged' => 'movieChanged',
+        'showChanged' => 'showChanged',
         'movieDeselected' => 'movieDeselect',
         'ticketsConfirmed' => 'ticketsConfirmed',
     ];
 
     public $cinemaId;
 
-    public $movieId;
+    public $showId;
 
     public $movies = [];
 
@@ -30,13 +32,11 @@ class Index extends Component
 
     public $persons;
 
-    public $cinema;
-
     public $selectStep = false;
 
     public $selectPeople = false;
 
-    public $step;
+    public $step = 1;
 
     public $show;
 
@@ -47,7 +47,13 @@ class Index extends Component
 
     public function mount()
     {
-        $this->step = 1;
+        if (!empty($this->showId)) {
+            $show = CinemaShow::find($this->showId);
+
+            if ($show != null) {
+                $this->showChanged($show);
+            }
+        }
     }
 
     public function render()
@@ -58,7 +64,6 @@ class Index extends Component
     public function cinemaChanged(Cinema $cinema)
     {
         $this->clearMovie();
-        $this->cinema = $cinema;
         $this->cinemaId = $cinema->id;
         $this->movies = $cinema->shows()->where('start_datetime', '>', now())->get();
     }
@@ -66,7 +71,7 @@ class Index extends Component
     public function clearMovie()
     {
         $this->movie = null;
-        $this->movieId = null;
+        $this->showId = null;
         $this->persons = null;
         $this->selectPeople = false;
     }
@@ -82,11 +87,11 @@ class Index extends Component
         $this->step--;
     }
 
-    public function movieChanged(CinemaMovie $movie, CinemaShow  $show)
+    public function showChanged(CinemaShow $show)
     {
-        $this->movie = $movie;
         $this->show = $show;
-        $this->movieId = $movie->id;
+        $this->showId = $show->id;
+        $this->cinemaId = $show->cinema->id;
         $this->selectPeople = true;
     }
 
