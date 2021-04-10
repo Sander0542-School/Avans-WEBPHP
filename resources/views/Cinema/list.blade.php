@@ -10,7 +10,7 @@
             <h2>Bioscopen</h2>
             <div class="card">
                 <div class="card-body">
-                    <a class="btn btn-primary py-3" role="button" href="{{ route('cinemas.create') }}">Bioscoop toevoegen</a>
+                    <a id="createCinema" class="btn btn-primary py-3" role="button" href="{{ route('cinemas.create') }}">Bioscoop toevoegen</a>
                     <table class="table table-bordered mb-5">
                         <thead>
                         <tr class="table-success">

@@ -46,7 +46,7 @@ class MovieController extends Controller
 
         $movie->save();
 
-        return redirect()->route('movies.index');
+        return redirect()->route('movies.index')->with('message', 'success:Film succesvol toegevoegd');
     }
 
     /**

@@ -31,7 +31,7 @@ class ShowController extends Controller
     public function create($hallId)
     {
         $movies = CinemaMovie::all();
-        $hall = CinemaMovie::findOrFail($hallId);
+        $hall = CinemaHall::findOrFail($hallId);
         return view('Cinema.Shows.create', compact('hall', 'movies'));
     }
 

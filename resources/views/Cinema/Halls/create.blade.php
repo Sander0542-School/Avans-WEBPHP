@@ -25,12 +25,12 @@
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                         <input name="cinema" type="hidden" value="{{ $cinemaId}}"/>
                         <div class="form-group">
-                            <label for="InputCinemaName">Aantal rijen:</label>
-                            <input type="number" name="chair_rows" class="form-control" id="InputCinemaName" placeholder="Aantal rijen">
+                            <label for="InputCinemaHallRows">Aantal rijen:</label>
+                            <input type="number" name="chair_rows" class="form-control" id="InputCinemaHallRows" placeholder="Aantal rijen">
                         </div>
                         <div class="form-group">
-                            <label for="InputCinemaLocation">Aantal stoelen per rij:</label>
-                            <input type="number" name="chair_row_seats" class="form-control" id="InputCinemaLocation" placeholder="Aantal stoelen">
+                            <label for="InputCinemaHallRowSeats">Aantal stoelen per rij:</label>
+                            <input type="number" name="chair_row_seats" class="form-control" id="InputCinemaHallRowSeats" placeholder="Aantal stoelen">
                         </div>
 
                         <button type="submit" class="btn btn-primary">Opslaan</button>

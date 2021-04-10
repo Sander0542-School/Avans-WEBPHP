@@ -48,7 +48,7 @@ class HallController extends Controller
         $cinema = Cinema::findOrFail($request->input('cinema'));
         $cinema->halls()->save($hall);
 
-        return redirect()->route('cinemas.halls.index', $cinema->id);
+        return redirect()->route('cinemas.halls.index', $cinema->id)->with('message', 'success:Zaal succesvol toegevoegd');
     }
 
     /**
