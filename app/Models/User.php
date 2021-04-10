@@ -33,7 +33,8 @@ class User extends Authenticatable
         'city',
         'zip_code' ,
         'street',
-        'building_number'
+        'building_number',
+        'is_admin',
     ];
 
     /**
