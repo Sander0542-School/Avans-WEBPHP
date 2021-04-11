@@ -23,7 +23,7 @@ class CinemaShowsTest extends DuskTestCase
             $browser->loginAs(User::find(1))
                 ->visit(route('admin.movies.create'))
                 ->type('#InputMovieName', 'Toy story')
-                ->press('Submit')
+                ->press('Opslaan')
                 ->pause(1000)
                 ->assertSee('Film succesvol toegevoegd');
         });

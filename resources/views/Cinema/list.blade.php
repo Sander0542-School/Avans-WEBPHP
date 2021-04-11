@@ -15,8 +15,8 @@
                         <thead>
                         <tr class="table-success">
                             <th scope="col">#</th>
-                            <th scope="col">First name</th>
-                            <th scope="col">Last name</th>
+                            <th scope="col">Naam</th>
+                            <th scope="col">Locaties</th>
                             <th scope="col">Acties</th>
                         </tr>
                         </thead>

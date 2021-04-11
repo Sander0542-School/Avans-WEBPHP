@@ -51,16 +51,6 @@ class HallController extends Controller
         return redirect()->route('admin.cinemas.halls.index', $cinema->id)->with('message', 'success:Zaal succesvol toegevoegd');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -75,17 +65,6 @@ class HallController extends Controller
         return view('Cinema.Halls.edit', compact('hall'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-
-    }
 
     /**
      * Remove the specified resource from storage.

@@ -31,7 +31,7 @@
                         <div class="form-check">
 
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Opslaan</button>
                     </form>
                 </div>
             </div>

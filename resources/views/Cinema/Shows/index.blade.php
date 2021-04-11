@@ -15,10 +15,10 @@
                         <thead>
                         <tr class="table-success">
                             <th scope="col">#</th>
-                            <th scope="col">film</th>
+                            <th scope="col">Film</th>
                             <th scope="col">Start tijd</th>
                             <th scope="col">Eind tijd</th>
-                            <th scope="col">acties</th>
+                            <th scope="col">Acties</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -30,19 +30,11 @@
                                 <td>{{ $hall->end_datetime }}</td>
                                 <td>
                                     <a class="btn btn-primary" role="button" href="{{ route('admin.shows.edit', $hall->id) }}">Aanpassen</a>
-{{--                                    <form action="{{ route('halls.destroy', $hall->id) }}" method="POST">--}}
-{{--                                        @method('DELETE')--}}
-
-{{--                                        @csrf--}}
-{{--                                        <button class="btn btn-danger delete">Verwijder bioscoop</button>--}}
-{{--                                    </form>--}}
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-
-
                 </div>
             </div>
         </div>
