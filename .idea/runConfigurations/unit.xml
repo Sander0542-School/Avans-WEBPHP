@@ -1,6 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="unit" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-    <TestRunner coverage_engine="PHPDBG" scope="XML" />
-    <method v="2" />
-  </configuration>
-</component>
