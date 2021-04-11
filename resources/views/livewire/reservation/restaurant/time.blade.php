@@ -12,8 +12,8 @@
     </div>
 
     <div class="form-group">
-        <label for="inputRestaurantDay">{{ __('reservation.restaurant.form.day-part.label') }}</label>
-        <select id="inputRestaurantDay" wire:model="dayPart" class="form-control @error('dayPart') is-invalid @enderror">
+        <label for="inputRestaurantDayPart">{{ __('reservation.restaurant.form.day-part.label') }}</label>
+        <select id="inputRestaurantDayPart" wire:model="dayPart" class="form-control @error('dayPart') is-invalid @enderror">
             <option>{{ __('reservation.restaurant.form.day-part.option.default') }}</option>
             @foreach($selectableParts as $dayPart)
                 <option value="{{ $dayPart }}">{{ \Carbon\Carbon::today()->addMinutes($dayPart * 30)->format('H:i') }}</option>

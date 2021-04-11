@@ -8,7 +8,7 @@
     <div class="card">
         <div class="card-body">
             <div>
-                <a class="btn btn-primary" href="{{ route('admin.restaurants.create') }}">{{ __('admin.restaurants.button.create') }}</a>
+                <a id="createRestaurant" class="btn btn-primary" href="{{ route('admin.restaurants.create') }}">{{ __('admin.restaurants.button.create') }}</a>
                 <br/><br/>
             </div>
             <table class="table table-striped">

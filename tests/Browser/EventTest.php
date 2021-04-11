@@ -20,7 +20,7 @@ class EventTest extends DuskTestCase
             $browser->loginAs(User::find(1))
                 ->visitRoute('admin.events.index')
                 ->click('#createEvent')
-                ->waitForLocation('/admin/events/create')
+                ->waitForRoute('admin.events.create')
                 ->pause(1000)
 
                 ->type('name', 'Pinkpop')
@@ -36,7 +36,7 @@ class EventTest extends DuskTestCase
                 ->assertSee('Kerkrade')
 
                 ->click('table > tbody > tr > td > a')
-                ->waitForRoute('admin.events.edit')
+                ->waitForRoute('admin.events.edit', 1)
                 ->pause(1000)
 
                 ->type('location', 'Landgraaf')

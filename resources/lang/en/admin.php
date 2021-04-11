@@ -99,7 +99,7 @@ return [
                 'label' => 'Name',
             ],
             'kitchen' => [
-                'label' => 'Location',
+                'label' => 'Kitchen',
                 'option' => [
                     'default' => 'Choose a kitchen'
                 ]
