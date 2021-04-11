@@ -24,7 +24,7 @@ class RestaurantCrowdingController extends Controller
         foreach ($restaurants as $restaurant) {
             $reservationsNow = $restaurant->reservations()->where('day', Carbon::today())->whereBetween('day_part', [$dayPart - 2, $dayPart + 3])->count();
 
-            $stateIndex = floor(sizeof(self::States) / $restaurant->max_seats * $reservationsNow);
+            $stateIndex = (int)floor(sizeof(self::States) / $restaurant->max_seats * $reservationsNow);
 
             $data = [
                 'name' => $restaurant->name,

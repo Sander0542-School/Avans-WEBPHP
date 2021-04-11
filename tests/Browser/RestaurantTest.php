@@ -107,4 +107,52 @@ class RestaurantTest extends DuskTestCase
                 ->waitForRoute('home');
         });
     }
+
+    public function testRestaurantCrowding()
+    {
+        $kitchen = RestaurantKitchen::create([
+            'name' => 'Burgers',
+        ]);
+
+        $restaurant = Restaurant::create([
+            'name' => 'Five Guys',
+            'location' => 'Eindhoven',
+            'restaurant_kitchen_id' => $kitchen->id,
+            'opens_at' => now()->setTime(16, 30),
+            'closes_at' => now()->setTime(22, 0),
+            'max_seats' => 9,
+        ]);
+
+        $dayPart = ceil(now()->diffInMinutes(Carbon::today()) / 30);
+
+        $restaurant->reservations()->createMany([
+            [
+                'user_id' => 1,
+                'day' => now(),
+                'day_part' => $dayPart,
+            ],
+            [
+                'user_id' => 1,
+                'day' => now(),
+                'day_part' => $dayPart + 1,
+            ],
+            [
+                'user_id' => 1,
+                'day' => now(),
+                'day_part' => $dayPart - 1,
+            ],
+            [
+                'user_id' => 1,
+                'day' => now(),
+                'day_part' => $dayPart + 1,
+            ],
+        ]);
+
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs(User::find(1))
+                ->visitRoute('admin.restaurants.crowding.index')
+                ->assertSee('Five Guys')
+                ->assertSee(__('admin.restaurants.crowding.state.crowded'));
+        });
+    }
 }
