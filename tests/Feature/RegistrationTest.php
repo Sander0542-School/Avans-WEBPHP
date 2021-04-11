@@ -25,6 +25,12 @@ class RegistrationTest extends TestCase
             'email' => 'test@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
+            'country' => 'Nederland',
+            'state' => 'Noord Brabant',
+            'city' => 'Eindhoven',
+            'zip_code' => '1234 AB',
+            'street' => 'CSharp Straat',
+            'building_number' => '1',
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature(),
         ]);
 
