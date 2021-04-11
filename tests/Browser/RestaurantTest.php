@@ -54,10 +54,6 @@ class RestaurantTest extends DuskTestCase
         });
     }
 
-    /**
-     * @throws \Throwable
-     * @group dev
-     */
     public function testReserveRestaurant()
     {
         RestaurantKitchen::create([
