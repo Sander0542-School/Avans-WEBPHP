@@ -56,19 +56,9 @@ class CinemaController extends Controller
         $cinema = new Cinema($request->only('name', 'location'));
         $cinema->save();
 
-        return redirect()->route('admin.cinemas.index');
+        return redirect()->route('admin.cinemas.index')->with('message', 'success:Bioscoop succesvol toegevoegd');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -101,7 +91,7 @@ class CinemaController extends Controller
         $cinema->location = $request->input('location');
         $cinema->save();
 
-        return redirect()->route('admin.cinemas.index');
+        return redirect()->route('admin.cinemas.index')->with('message', 'success:Bioscoop succesvol aangepast');
 
     }
 

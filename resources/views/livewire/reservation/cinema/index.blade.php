@@ -17,7 +17,7 @@
                     @if($selectPeople)
                         <div class="form-group">
                             <label>Aantal personen (tussen 1 en de 6):</label>
-                            <input wire:model="persons" type="number" class="form-control" min="1" max="6">
+                            <input wire:model="persons" name="persons" type="number" class="form-control" min="1" max="6">
                             @error('persons') <span class="error">{{ $message }}</span> @enderror
                         </div>
                         @if($persons >= 1)

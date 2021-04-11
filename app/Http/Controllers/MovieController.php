@@ -42,22 +42,11 @@ class MovieController extends Controller
             'title' => 'required|max:50',
         ]);
 
-        $movie = new CinemaMovie(['title' => $request->input('title'),]);
+        $movie = new CinemaMovie(['title' => $request->input('title')]);
 
         $movie->save();
 
-        return redirect()->route('movies.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('admin.movies.index')->with('message', 'success:Film succesvol toegevoegd');
     }
 
     /**
@@ -90,7 +79,7 @@ class MovieController extends Controller
         $movie->title = $request->input('title');
         $movie->save();
 
-        return redirect()->route('movies.index');
+        return redirect()->route('admin.movies.index');
 
     }
 
@@ -104,6 +93,6 @@ class MovieController extends Controller
     {
         $movie = CinemaMovie::findOrFail($id);
         $movie->delete();
-        return redirect()->route('movies.index');
+        return redirect()->route('admin.movies.index');
     }
 }

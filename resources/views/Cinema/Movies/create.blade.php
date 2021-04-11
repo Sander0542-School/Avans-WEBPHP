@@ -21,7 +21,7 @@
             <h2>Film toevoegen</h2>
             <div class="card">
                 <div class="card-body">
-                    <form  method="post" action="{{ url('movies') }}" accept-charset="UTF-8">
+                    <form  method="post" action="{{ route('admin.movies.store') }}" accept-charset="UTF-8">
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                         <div class="form-group">
                             <label for="InputCinemaName">Naam:</label>
@@ -31,7 +31,7 @@
                         <div class="form-check">
 
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Opslaan</button>
                     </form>
                 </div>
             </div>

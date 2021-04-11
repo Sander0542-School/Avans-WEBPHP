@@ -31,7 +31,7 @@ class ShowController extends Controller
     public function create($hallId)
     {
         $movies = CinemaMovie::all();
-        $hall = CinemaMovie::findOrFail($hallId);
+        $hall = CinemaHall::findOrFail($hallId);
         return view('Cinema.Shows.create', compact('hall', 'movies'));
     }
 
@@ -55,19 +55,9 @@ class ShowController extends Controller
         $hall->shows()->save($show);
 
 
-        return redirect()->route('halls.shows.index', $hall->id);
+        return redirect()->route('admin.halls.shows.index', $hall->id)->with('message', 'success:Film succesvol ingepland');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -117,17 +107,8 @@ class ShowController extends Controller
         $show->save();
 
 
-        return redirect()->route('halls.shows.index', $show->cinema_hall_id);
+        return redirect()->route('admin.halls.shows.index', $show->cinema_hall_id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+
 }

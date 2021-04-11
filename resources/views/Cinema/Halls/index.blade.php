@@ -28,8 +28,8 @@
                                 <td>{{ $cinema->name }}</td>
                                 <td>{{ $hall->chair_rows }}</td>
                                 <td>{{ $hall->chair_row_seats }}</td>
-                                <td><a class="btn btn-primary" role="button" href="{{ route('halls.shows.index', $hall->id) }}">Shows bekijken</a>
-                                    <form action="{{ route('halls.destroy', $hall->id) }}" method="POST">
+                                <td><a class="btn btn-primary" role="button" href="{{ route('admin.halls.shows.index', $hall->id) }}">Shows bekijken</a>
+                                    <form action="{{ route('admin.halls.destroy', $hall->id) }}" method="POST">
                                         @method('DELETE')
 
                                         @csrf

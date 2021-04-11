@@ -21,7 +21,7 @@
             <h2>Film updaten</h2>
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('movies.update', $movie->id) }}" >
+                    <form method="POST" action="{{ route('admin.movies.update', $movie->id) }}" >
                         @method('PUT')
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                         <div class="form-group">
