@@ -33,6 +33,6 @@ class Restaurant extends Model
 
     public function reservations()
     {
-        return $this->hasMany(RestaurantReservation::class);
+        return $this->hasMany(RestaurantReservation::class, 'restaurant_id', 'id');
     }
 }

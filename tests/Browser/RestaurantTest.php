@@ -129,22 +129,22 @@ class RestaurantTest extends DuskTestCase
         $restaurant->reservations()->createMany([
             [
                 'user_id' => 1,
-                'day' => now(),
+                'day' => Carbon::today(),
                 'day_part' => $dayPart,
             ],
             [
                 'user_id' => 1,
-                'day' => now(),
+                'day' => Carbon::today(),
                 'day_part' => $dayPart + 1,
             ],
             [
                 'user_id' => 1,
-                'day' => now(),
+                'day' => Carbon::today(),
                 'day_part' => $dayPart - 1,
             ],
             [
                 'user_id' => 1,
-                'day' => now(),
+                'day' => Carbon::today(),
                 'day_part' => $dayPart + 1,
             ],
         ]);
