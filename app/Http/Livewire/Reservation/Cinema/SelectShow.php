@@ -14,10 +14,6 @@ class SelectShow extends Component
 
     public $showId;
 
-    public function mount() {
-        $this->shows = Cinema::find($this->cinemaId)->shows;
-    }
-
     public function render()
     {
         $show = CinemaShow::find($this->showId);
@@ -27,6 +23,8 @@ class SelectShow extends Component
         } else {
             $this->emitUp('showDeselected');
         }
+
+        $this->shows = Cinema::find($this->cinemaId)->shows;
 
         return view('livewire.reservation.cinema.select-movie');
     }

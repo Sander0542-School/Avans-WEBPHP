@@ -26,10 +26,6 @@ class Index extends Component
 
     public $showId;
 
-    public $movies = [];
-
-    public $movie;
-
     public $persons;
 
     public $selectStep = false;
@@ -65,12 +61,10 @@ class Index extends Component
     {
         $this->clearMovie();
         $this->cinemaId = $cinema->id;
-        $this->movies = $cinema->shows()->where('start_datetime', '>', now())->get();
     }
 
     public function clearMovie()
     {
-        $this->movie = null;
         $this->showId = null;
         $this->persons = null;
         $this->selectPeople = false;
