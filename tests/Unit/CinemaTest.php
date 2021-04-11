@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Http\Livewire\Reservation\Cinema\SelectChair;
 use App\Models\Cinema;
+use App\Models\CinemaHall;
 use App\Models\CinemaMovie;
 use App\Models\CinemaReservation;
 use App\Models\User;
@@ -18,8 +19,10 @@ class CinemaTest extends TestCase
     use RefreshDatabase;
 
 
-    function test_can_create_reservation()
+    protected function setUp(): void
     {
+        parent::setUp();
+
         $user = User::create([
             'name' => 'Admin',
             'email' => 'admin@test.nl',
@@ -35,7 +38,10 @@ class CinemaTest extends TestCase
 
         Livewire::actingAs($user);
         $this->actingAs($user);
+    }
 
+    function test_can_create_reservation()
+    {
         $cinema = Cinema::create([
             'name' => 'Vue',
             'location' => 'Eindhoven',
@@ -57,7 +63,6 @@ class CinemaTest extends TestCase
             ["row_id" => "2", "seat_id" => "4"],
         ];
 
-
         Livewire::test(SelectChair::class, ['show' => $show, 'selectedChairs' => $selectedChairs])
             ->call('confirmReservation');
 
@@ -70,7 +75,6 @@ class CinemaTest extends TestCase
         $cinema = Cinema::create([
             'name' => 'Vue',
             'location' => 'Eindhoven',
-
         ]);
 
         $response = $this->put(route('admin.cinemas.update', ['cinema' => $cinema->id]), [
@@ -79,6 +83,111 @@ class CinemaTest extends TestCase
         ]);
 
         $response->assertRedirect(route('admin.cinemas.index'));
+
+    }
+
+    function test_can_create_cinema_wrong_data_location()
+    {
+        $cinema = Cinema::create([
+            'name' => 'Vue',
+            'location' => 'Eindhoven',
+        ]);
+
+        $response = $this->put(route('admin.cinemas.update', ['cinema' => $cinema->id]), [
+            'name' => 'Pathe',
+        ]);
+
+        $response->assertSessionHasErrors('location');
+
+    }
+
+    function test_can_create_cinema_hall()
+    {
+        $cinema = Cinema::create([
+            'name' => 'Vue',
+            'location' => 'Eindhoven',
+        ]);
+
+        $response = $this->post(route('admin.cinemas.halls.store', ['cinema' => $cinema->id]), [
+            'chair_rows' => '15',
+            'chair_row_seats' => '15',
+            'cinema' => $cinema->id,
+        ]);
+
+        $response->assertRedirect(route('admin.cinemas.halls.index', ['cinema' => $cinema->id]));
+
+    }
+
+    function test_can_create_cinema_hall_to_big()
+    {
+        $cinema = Cinema::create([
+            'name' => 'Vue',
+            'location' => 'Eindhoven',
+        ]);
+
+        $response = $this->post(route('admin.cinemas.halls.store', ['cinema' => $cinema->id]), [
+            'chair_rows' => '15',
+            'chair_row_seats' => '22',
+            'cinema' => $cinema->id,
+        ]);
+
+        $response->assertRedirect(route('admin.cinemas.halls.index', ['cinema' => $cinema->id]));
+
+    }
+
+    function test_can_create_cinema_show()
+    {
+        $cinema = Cinema::create([
+            'name' => 'Vue',
+            'location' => 'Eindhoven',
+        ]);
+
+        $cinema->halls()->create([
+            'chair_rows' => '15',
+            'chair_row_seats' => '15',
+        ]);
+
+
+        $movie = CinemaMovie::create([
+            'title' => 'toy story'
+        ]);
+
+        $response = $this->post(route('admin.halls.shows.store', ['hall' => $cinema->halls()->first()->id]), [
+            'cinema_hall_id' => $cinema->halls()->first()->id,
+            'movie_id' => $movie->id,
+            'start_datetime' =>  now()->addDays(13)->setTime(14, 30)->format('Y-m-d\TH:i'),
+            'end_datetime' =>  now()->addDays(13)->setTime(14, 50)->format('Y-m-d\TH:i')
+        ]);
+
+        $response->assertRedirect(route('admin.halls.shows.index', ['hall' => $cinema->halls()->first()->id]));
+
+    }
+
+    function test_can_not_create_cinema_show()
+    {
+        $cinema = Cinema::create([
+            'name' => 'Vue',
+            'location' => 'Eindhoven',
+        ]);
+
+        $cinema->halls()->create([
+            'chair_rows' => '15',
+            'chair_row_seats' => '15',
+        ]);
+
+
+        $movie = CinemaMovie::create([
+            'title' => 'toy story'
+        ]);
+
+        $response = $this->post(route('admin.halls.shows.store', ['hall' => $cinema->halls()->first()->id]), [
+            'cinema_hall_id' => $cinema->halls()->first()->id,
+            'movie_id' => 55,
+            'start_datetime' =>  now()->addDays(13)->setTime(14, 30)->format('Y-m-d\TH:i'),
+            'end_datetime' =>  now()->addDays(13)->setTime(14, 50)->format('Y-m-d\TH:i')
+        ]);
+
+        $response->assertSessionHasErrors('movie_id');
 
     }
 

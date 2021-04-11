@@ -26,11 +26,11 @@
                         <input name="cinema" type="hidden" value="{{ $cinemaId}}"/>
                         <div class="form-group">
                             <label for="InputCinemaHallRows">Aantal rijen:</label>
-                            <input type="number" name="chair_rows" class="form-control" id="InputCinemaHallRows" placeholder="Aantal rijen">
+                            <input type="number" min="10" max="20" name="chair_rows" class="form-control" id="InputCinemaHallRows" placeholder="Aantal rijen">
                         </div>
                         <div class="form-group">
                             <label for="InputCinemaHallRowSeats">Aantal stoelen per rij:</label>
-                            <input type="number" name="chair_row_seats" class="form-control" id="InputCinemaHallRowSeats" placeholder="Aantal stoelen">
+                            <input type="number" min="15" max="24" name="chair_row_seats" class="form-control" id="InputCinemaHallRowSeats" placeholder="Aantal stoelen">
                         </div>
 
                         <button type="submit" class="btn btn-primary">Opslaan</button>
