@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\RestaurantCrowdingController;
 use App\Http\Controllers\CinemaController;
 use App\Http\Controllers\HallController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ShowController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -31,6 +32,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('', HomeIndex::class)->name('home');
 Route::get('events', HomeEvents::class)->name('home.events');
 Route::get('restaurants', HomeRestaurants::class)->name('home.restaurants');
+Route::any('language', [HomeController::class, 'language'])->name('home.language');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('reservation')->name('reservation.')->group(function () {
