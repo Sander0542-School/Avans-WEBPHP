@@ -10,6 +10,7 @@ use App\Models\CinemaReservation;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Livewire;
 use Tests\TestCase;
@@ -66,11 +67,12 @@ class CinemaTest extends TestCase
         Livewire::test(SelectChair::class, ['show' => $show, 'selectedChairs' => $selectedChairs])
             ->call('confirmReservation');
 
+
         $this->assertTrue(CinemaReservation::where('user_id', User::find(1)->id)->where('cinema_show_id', $show->id)->exists());
     }
 
 
-    function test_can_create_cinema()
+    function test_can_update_cinema()
     {
         $cinema = Cinema::create([
             'name' => 'Vue',
@@ -82,6 +84,7 @@ class CinemaTest extends TestCase
             'location' => 'Eindhoven',
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.cinemas.index'));
 
     }
@@ -114,6 +117,7 @@ class CinemaTest extends TestCase
             'cinema' => $cinema->id,
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.cinemas.halls.index', ['cinema' => $cinema->id]));
 
     }
@@ -131,6 +135,7 @@ class CinemaTest extends TestCase
             'cinema' => $cinema->id,
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.cinemas.halls.index', ['cinema' => $cinema->id]));
 
     }
@@ -159,6 +164,7 @@ class CinemaTest extends TestCase
             'end_datetime' =>  now()->addDays(13)->setTime(14, 50)->format('Y-m-d\TH:i')
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.halls.shows.index', ['hall' => $cinema->halls()->first()->id]));
 
     }
@@ -175,11 +181,6 @@ class CinemaTest extends TestCase
             'chair_row_seats' => '15',
         ]);
 
-
-        $movie = CinemaMovie::create([
-            'title' => 'toy story'
-        ]);
-
         $response = $this->post(route('admin.halls.shows.store', ['hall' => $cinema->halls()->first()->id]), [
             'cinema_hall_id' => $cinema->halls()->first()->id,
             'movie_id' => 55,
@@ -188,6 +189,59 @@ class CinemaTest extends TestCase
         ]);
 
         $response->assertSessionHasErrors('movie_id');
+
+    }
+
+    function test_can_create_cinema()
+    {
+        $response = $this->post(route('admin.cinemas.store'), [
+            'name' => 'vue',
+            'location' => 'Geldrop',
+        ]);
+
+        $response->assertSessionHasNoErrors();
+        $response->assertRedirect(route('admin.cinemas.index'));
+
+    }
+
+    function test_can_not_create_cinema_wrong_data()
+    {
+        $response = $this->post(route('admin.cinemas.store'), [
+            'name' => 'vue',
+
+        ]);
+
+        $response->assertSessionHasErrors('location');
+
+        $response = $this->post(route('admin.cinemas.store'), [
+            'location' => 'Geldrop',
+        ]);
+
+        $response->assertSessionHasErrors('name');
+
+    }
+
+    function test_can_create_movie()
+    {
+        $response = $this->post(route('admin.movies.store'), [
+            'title' => 'harry potter',
+        ]);
+
+        $response->assertRedirect(route('admin.movies.index'));
+
+    }
+
+    function test_can_update_movie()
+    {
+        $movie = CinemaMovie::create(['title' => 'harry potter 7']);
+
+
+        $response = $this->put(route('admin.movies.update',['movie' => $movie->id]), [
+            'title' => 'harry potter 8',
+        ]);
+
+        $response->assertSessionHasNoErrors();
+        $response->assertRedirect(route('admin.movies.index'));
 
     }
 
