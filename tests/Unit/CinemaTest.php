@@ -17,10 +17,9 @@ class CinemaTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
 
+    function test_can_create_reservation()
+    {
         $user = User::create([
             'name' => 'Admin',
             'email' => 'admin@test.nl',
@@ -36,12 +35,7 @@ class CinemaTest extends TestCase
 
         Livewire::actingAs($user);
         $this->actingAs($user);
-    }
 
-
-    /** @test */
-    function can_create_reservation()
-    {
         $cinema = Cinema::create([
             'name' => 'Vue',
             'location' => 'Eindhoven',
@@ -70,13 +64,21 @@ class CinemaTest extends TestCase
         $this->assertTrue(CinemaReservation::where('user_id', User::find(1)->id)->where('cinema_show_id', $show->id)->exists());
     }
 
-    /** @test */
-    function can_create_cinema()
+
+    function test_can_create_cinema()
     {
         $cinema = Cinema::create([
             'name' => 'Vue',
             'location' => 'Eindhoven',
+
         ]);
+
+        $response = $this->put(route('admin.cinemas.update', ['cinema' => $cinema->id]), [
+            'name' => 'Pathe',
+            'location' => 'Eindhoven',
+        ]);
+
+        $response->assertRedirect(route('admin.cinemas.index'));
 
     }
 
