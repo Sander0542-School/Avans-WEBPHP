@@ -55,7 +55,7 @@ class ShowController extends Controller
         $hall->shows()->save($show);
 
 
-        return redirect()->route('admin.halls.shows.index', $hall->id);
+        return redirect()->route('admin.halls.shows.index', $hall->id)->with('message', 'success:Film succesvol ingepland');
     }
 
     /**

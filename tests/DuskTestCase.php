@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Models\User;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
@@ -23,6 +24,25 @@ abstract class DuskTestCase extends BaseTestCase
             static::startChromeDriver();
         }
     }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@test.nl',
+            'password' => \Hash::make('password'),
+            'country' => 'Nederland',
+            'state' => 'Noord Brabant',
+            'city' => 'Eindhoven',
+            'zip_code' => '1234 AB',
+            'street' => 'Weglaan',
+            'building_number' => '12',
+            'is_admin' => true,
+        ]);
+    }
+
 
     /**
      * Create the RemoteWebDriver instance.

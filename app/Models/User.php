@@ -34,7 +34,7 @@ class User extends Authenticatable
         'zip_code' ,
         'street',
         'building_number',
-        'is_admin'
+        'is_admin',
     ];
 
     /**

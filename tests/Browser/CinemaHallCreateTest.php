@@ -12,8 +12,16 @@ class CinemaHallCreateTest extends DuskTestCase
 {
     use DatabaseMigrations;
 
+    /**
+     * @test
+     * @group cinema
+     */
     public function testVistHallIndex()
     {
+        Cinema::create([
+            'name' => 'Vue',
+            'location' => 'Eindhoven',
+        ]);
         $cinema = Cinema::inRandomOrder()->first();
         $this->browse(function (Browser $browser) use ($cinema) {
             $browser->loginAs(User::find(1))
@@ -25,11 +33,18 @@ class CinemaHallCreateTest extends DuskTestCase
 
     }
 
+    /**
+     * @test
+     * @group cinema
+     */
     public function testCreateHall()
     {
-        $cinema = Cinema::inRandomOrder()->first();
+        $cinema = Cinema::create([
+            'name' => 'Vue',
+            'location' => 'Eindhoven',
+        ]);
         $this->browse(function (Browser $browser) use ($cinema) {
-            $browser
+            $browser->loginAs(User::find(1))
                 ->visit(route('admin.cinemas.halls.create', $cinema->id))
                 ->assertPathIs('/admin/cinemas/'.$cinema->id.'/halls/create')
                 ->assertSee('Bioscoop zaal toevoegen')
@@ -43,12 +58,19 @@ class CinemaHallCreateTest extends DuskTestCase
 
     }
 
-
+    /**
+     * @test
+     * @group cinema
+     */
     public function testCreateHallFail()
     {
-        $cinema = Cinema::inRandomOrder()->first();
+        $cinema = Cinema::create([
+            'name' => 'Vue',
+            'location' => 'Eindhoven',
+        ]);
+
         $this->browse(function (Browser $browser) use ($cinema) {
-            $browser
+            $browser->loginAs(User::find(1))
                 ->visit(route('admin.cinemas.halls.create', $cinema->id))
                 ->assertPathIs('/admin/cinemas/'.$cinema->id.'/halls/create')
                 ->assertSee('Bioscoop zaal toevoegen')
