@@ -77,7 +77,7 @@ class CinemaHallCreateTest extends DuskTestCase
                 ->type('#InputCinemaHallRows', '22')
                 ->type('#InputCinemaHallRowSeats', '24')
                 ->press('Opslaan')
-                ->assertSee('The chair rows may not be greater than 20.')
+                ->assertPathIs('/admin/cinemas/'.$cinema->id.'/halls/create')
             ;
 
         });
