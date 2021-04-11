@@ -42,7 +42,7 @@ class MovieController extends Controller
             'title' => 'required|max:50',
         ]);
 
-        $movie = new CinemaMovie(['title' => $request->input('title'),]);
+        $movie = new CinemaMovie(['title' => $request->input('title')]);
 
         $movie->save();
 

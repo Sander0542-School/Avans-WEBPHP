@@ -10,13 +10,15 @@ use Tests\DuskTestCase;
 
 class CinemaHallCreateTest extends DuskTestCase
 {
+    use DatabaseMigrations;
+
     public function testVistHallIndex()
     {
         $cinema = Cinema::inRandomOrder()->first();
         $this->browse(function (Browser $browser) use ($cinema) {
             $browser->loginAs(User::find(1))
-            ->visit(route('cinemas.halls.index', $cinema->id))
-                ->assertPathIs('/cinemas/'.$cinema->id.'/halls')
+            ->visit(route('admin.cinemas.halls.index', $cinema->id))
+                ->assertPathIs('/admin/cinemas/'.$cinema->id.'/halls')
                 ->assertSee('Bioscopen');
 
         });
@@ -28,8 +30,8 @@ class CinemaHallCreateTest extends DuskTestCase
         $cinema = Cinema::inRandomOrder()->first();
         $this->browse(function (Browser $browser) use ($cinema) {
             $browser
-                ->visit(route('cinemas.halls.create', $cinema->id))
-                ->assertPathIs('/cinemas/'.$cinema->id.'/halls/create')
+                ->visit(route('admin.cinemas.halls.create', $cinema->id))
+                ->assertPathIs('/admin/cinemas/'.$cinema->id.'/halls/create')
                 ->assertSee('Bioscoop zaal toevoegen')
                 ->type('#InputCinemaHallRows', '20')
                 ->type('#InputCinemaHallRowSeats', '24')
@@ -47,8 +49,8 @@ class CinemaHallCreateTest extends DuskTestCase
         $cinema = Cinema::inRandomOrder()->first();
         $this->browse(function (Browser $browser) use ($cinema) {
             $browser
-                ->visit(route('cinemas.halls.create', $cinema->id))
-                ->assertPathIs('/cinemas/'.$cinema->id.'/halls/create')
+                ->visit(route('admin.cinemas.halls.create', $cinema->id))
+                ->assertPathIs('/admin/cinemas/'.$cinema->id.'/halls/create')
                 ->assertSee('Bioscoop zaal toevoegen')
                 ->type('#InputCinemaHallRows', '22')
                 ->type('#InputCinemaHallRowSeats', '24')

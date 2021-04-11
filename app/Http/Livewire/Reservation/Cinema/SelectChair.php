@@ -65,7 +65,7 @@ class SelectChair extends Component
     public function checkChairAvalibility($row, $chair, int $counter): array
     {
         for ($i = 0; $i < $this->persons; $i++) {
-            if ($this->rows[$row][$chair + $i] != null) {
+            if (isset($this->rows[$row][$chair + $i])) {
 
                 if ($this->rows[$row][$chair + $i]['state'] != "blocked" && $this->rows[$row][$chair + $i]['state'] != "reserved") {
                     $counter++;

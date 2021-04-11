@@ -9,13 +9,16 @@ use Tests\DuskTestCase;
 
 class CinemaShowsTest extends DuskTestCase
 {
+    use DatabaseMigrations;
+
     public function testCreateMovie()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs(User::find(1))
-                ->visit(route('movies.create'))
+                ->visit(route('admin.movies.create'))
                 ->type('#InputMovieName', 'Toy story')
                 ->press('Submit')
+                ->pause(1000)
                 ->assertSee('Film succesvol toegevoegd');
         });
     }

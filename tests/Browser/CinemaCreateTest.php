@@ -10,10 +10,22 @@ use Tests\DuskTestCase;
 
 class CinemaCreateTest extends DuskTestCase
 {
+
+    use DatabaseMigrations;
+
     public function testLogin()
     {
-        $user = User::factory()->create([
+       $user = User::create([
+            'name' => 'Admin',
             'email' => 'admin@test.nl',
+            'password' => \Hash::make('password'),
+            'country' => 'Nederland',
+            'state' => 'Noord Brabant',
+            'city' => 'Eindhoven',
+            'zip_code' => '1234 AB',
+            'street' => 'Weglaan',
+            'building_number' => '12',
+            'is_admin' => true,
         ]);
 
         $this->browse(function ($browser) use ($user) {
@@ -29,7 +41,7 @@ class CinemaCreateTest extends DuskTestCase
     public function testCinemaIndex()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit(route('cinemas.index'))
+            $browser->visit(route('admin.cinemas.index'))
                     ->assertSee('Bioscopen');
         });
     }
@@ -37,15 +49,15 @@ class CinemaCreateTest extends DuskTestCase
     public function testCreateCinema()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit(route('cinemas.index'))
+            $browser->visit(route('admin.cinemas.index'))
                 ->click('#createCinema')
-                ->assertPathIs('/cinemas/create')
+                ->assertPathIs('/admin/cinemas/create')
                 ->waitFor('#InputCinemaName')
                 ->type('#InputCinemaName', 'bioscoop')
                 ->type('#InputCinemaLocation', 'eindhoven')
                 ->press('Submit')
                 ->assertSee('Bioscoop succesvol toegevoegd')
-                ->assertPathIs('/cinemas');
+                ->assertPathIs('/admin/cinemas');
 
         });
 
@@ -57,14 +69,14 @@ class CinemaCreateTest extends DuskTestCase
 
         $cinema = Cinema::inRandomOrder()->first();
         $this->browse(function (Browser $browser) use ($cinema) {
-            $browser->visit(route('cinemas.edit', $cinema->id))
-                ->assertPathIs('/cinemas/'.$cinema->id.'/edit')
+            $browser->visit(route('admin.cinemas.edit', $cinema->id))
+                ->assertPathIs('/admin/cinemas/'.$cinema->id.'/edit')
                 ->waitFor('#InputCinemaName')
                 ->type('#InputCinemaName', 'bioscoop')
                 ->type('#InputCinemaLocation', 'veldhoven')
                 ->press('Opslaan')
                 ->assertSee('Bioscoop succesvol aangepast')
-                ->assertPathIs('/cinemas');
+                ->assertPathIs('/admin/cinemas');
 
         });
 
