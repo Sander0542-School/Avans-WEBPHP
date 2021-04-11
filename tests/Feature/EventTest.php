@@ -34,7 +34,8 @@ class EventTest extends TestCase
         $this->actingAs($user);
     }
 
-    public function test_create_event() {
+    public function test_create_event()
+    {
         $response = $this->post(route('admin.events.store'), [
             'name' => 'Pinkpop',
             'location' => 'Landgraaf',
@@ -46,7 +47,8 @@ class EventTest extends TestCase
         $response->assertRedirect(route('admin.events.index'));
     }
 
-    public function test_edit_event() {
+    public function test_edit_event()
+    {
         $event = Event::create([
             'name' => 'Pinkpop',
             'location' => 'Kerkrade',
@@ -77,7 +79,6 @@ class EventTest extends TestCase
         ]);
 
         Livewire::test(ReservationEventIndex::class)
-            ->set('eventId', $event->id)
             ->call('eventSelected', $event)
             ->assertSee($event->name)
             ->assertSee($event->location)

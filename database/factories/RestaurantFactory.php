@@ -28,7 +28,7 @@ class RestaurantFactory extends Factory
             'location' => $this->faker->city,
             'opens_at' => $this->faker->dateTimeBetween('today 08:00', 'today 10:00')->format('H:i:s'),
             'closes_at' => $this->faker->dateTimeBetween('today 21:00', 'today 23:00')->format('H:i:s'),
-            'max_seats' => $this->faker->numberBetween(20, 80),
+            'max_seats' => $this->faker->numberBetween(20, 50),
         ];
     }
 
