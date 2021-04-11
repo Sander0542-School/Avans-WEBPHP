@@ -6,6 +6,7 @@ use App\Models\Cinema;
 use App\Models\CinemaShow;
 use App\Models\Event;
 use Carbon\Carbon;
+use Crypt;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -39,9 +40,20 @@ class Events extends Component
     public function mount()
     {
         $locations = collect();
-        $locations = $locations->concat(Event::all('location')->pluck('location'));
-        $locations = $locations->concat(Cinema::all('location')->pluck('location'));
-        $locations = $locations->sort();
+        $locations = $locations->concat(Event::all('location')->map(function(Event $event) {
+            return [
+                'value' => $event->getRawOriginal('location'),
+                'name' => $event->location
+            ];
+        }));
+        $locations = $locations->concat(Cinema::all('location')->map(function(Cinema $cinema) {
+            return [
+                'value' => $cinema->getRawOriginal('location'),
+                'name' => $cinema->location
+            ];
+        }));
+        $locations = $locations->sortBy('name');
+        $locations = $locations->unique('name');
 
         $this->locations = $locations->values()->all();
 

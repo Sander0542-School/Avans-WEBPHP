@@ -35,7 +35,7 @@
                     <select wire:model="location" class="form-control" id="inputLocation">
                         <option value="">{{ __('home.lists.events.section.location.option.default') }}</option>
                         @foreach($locations as $location)
-                            <option value="{{ $location }}">{{ $location }}</option>
+                            <option value="{{ $location['value'] }}">{{ $location['name'] }}</option>
                         @endforeach
                     </select>
                 </div>

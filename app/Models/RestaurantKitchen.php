@@ -12,6 +12,10 @@ class RestaurantKitchen extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'name',
+    ];
+
     protected $casts = [
         'name' => Encryption::class,
     ];
