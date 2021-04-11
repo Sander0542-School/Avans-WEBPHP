@@ -1,7 +1,7 @@
 <div>
     <div class="form-group">
         <label for="inputRestaurantId">{{ __('reservation.restaurant.form.restaurant.label') }}</label>
-        <select id="inputRestaurantId" wire:model="restaurantId" class="form-control">
+        <select id="inputRestaurantId" disabled wire:model="restaurantId" class="form-control">
             <option>{{ __('reservation.restaurant.form.restaurant.option.default') }}</option>
             @foreach($restaurants as $restaurant)
                 <option value="{{ $restaurant->id }}">{{ $restaurant->name }} ({{ $restaurant->kitchen->name }})</option>

@@ -54,7 +54,7 @@
             <div class="form-group">
                 <button class="btn-primary btn" wire:click="$emitUp('decrementStep')">terug</button>
                 @if($selectedChairs != [])
-                    <button class="btn-primary btn" wire:click="confirmReservation()">Stoelen kiezen</button>
+                    <button id="confirmChair" class="btn-primary btn" wire:click="confirmReservation()">Stoelen kiezen</button>
                 @endif
             </div>
         </div>

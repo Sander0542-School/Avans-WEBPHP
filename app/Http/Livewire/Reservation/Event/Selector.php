@@ -5,14 +5,13 @@ namespace App\Http\Livewire\Reservation\Event;
 use App\Models\Event;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
+use Validator;
 
 class Selector extends Component
 {
     public $events = [];
 
     public $eventId;
-
-    public $dataValid = false;
 
     public function getRules()
     {
@@ -28,7 +27,7 @@ class Selector extends Component
     {
         $this->events = Event::where('start_datetime', '>', now())->orderBy('start_datetime')->get();
 
-        $validator = \Validator::make([
+        $validator = Validator::make([
             'eventId' => $this->eventId,
         ], $this->getRules());
 
