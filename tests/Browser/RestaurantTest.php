@@ -4,6 +4,7 @@ namespace Tests\Browser;
 
 use App\Models\Restaurant;
 use App\Models\RestaurantKitchen;
+use App\Models\RestaurantReservation;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -17,7 +18,7 @@ class RestaurantTest extends DuskTestCase
     public function testCreateRestaurant()
     {
         RestaurantKitchen::create([
-            'name' => 'Burgers'
+            'name' => 'Burgers',
         ]);
 
         $this->browse(function (Browser $browser) {
@@ -57,7 +58,7 @@ class RestaurantTest extends DuskTestCase
     public function testReserveRestaurant()
     {
         RestaurantKitchen::create([
-            'name' => 'Burgers'
+            'name' => 'Burgers',
         ]);
 
         Restaurant::create([
